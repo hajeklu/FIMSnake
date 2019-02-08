@@ -8,26 +8,25 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cz.uhk.fimsnake.model.GameCanvas;
 import cz.uhk.fimsnake.model.Snake;
 
 public class GameView extends View {
 
-    private Snake snake;
     private int FPS = 30;
     private double avgFPS;
     private Timer timer;
-    private int speed = 100;
+    private int speed = 1000;
+    private GameCanvas gameCanvas;
 
     public GameView(Context context) {
         super(context);
-        snake = new Snake();
-
-
         Thread t = new Thread() {
 
             @Override
@@ -35,7 +34,8 @@ public class GameView extends View {
                 try {
                     while (!isInterrupted()) {
                         Thread.sleep(speed);
-                        snake.tick();
+                        if (gameCanvas != null)
+                            gameCanvas.tickScene();
                     }
                 } catch (InterruptedException e) {
                 }
@@ -47,15 +47,21 @@ public class GameView extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
+        gameCanvas = GameCanvas.getGameCanvas(canvas);
         canvas.drawColor(Color.GRAY);
-        Paint paint = new Paint();
-        paint.setColor(Color.GREEN);
-        //  canvas.drawRect(10,10, 50, 50, paint);
-        snake.draw(canvas);
+        gameCanvas.drawScene();
         invalidate();
     }
 
-    public void update() {
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int mid = gameCanvas.getWidth() / 2;
 
+        if (event.getX() < mid)
+            gameCanvas.getSnake().turnLeft();
+        else if (event.getX() > mid)
+            gameCanvas.getSnake().turnRight();
+
+        return super.onTouchEvent(event);
     }
 }
