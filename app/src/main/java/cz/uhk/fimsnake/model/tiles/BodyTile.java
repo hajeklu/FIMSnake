@@ -31,6 +31,11 @@ public class BodyTile extends Tile {
         // texture or if can not read picture
         //	if (textures || !imageMaker.isReadyPicture()) {
         g.drawRect(x, y, x + GameCanvas.TILESIZE, y + GameCanvas.TILESIZE, paint);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(Color.BLACK);
+        g.drawRect(x, y, x + GameCanvas.TILESIZE, y + GameCanvas.TILESIZE, paint);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.GREEN);
 
 	/*	} else {
 			// change color of snake

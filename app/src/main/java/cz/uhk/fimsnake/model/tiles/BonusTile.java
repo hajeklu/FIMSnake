@@ -19,7 +19,7 @@ public class BonusTile extends Tile {
 		this.x = x;
 		this.y = y;
 		//imageMaker = ImageMaker.getInstance();
-		paint.setColor(Color.GRAY);
+		paint.setColor(Color.rgb(255,140,0));
 	}
 
 	@Override

@@ -22,7 +22,7 @@ public class GameView extends View {
     private int FPS = 30;
     private double avgFPS;
     private Timer timer;
-    private int speed = 1000;
+    private int speed = 120;
     private GameCanvas gameCanvas;
 
     public GameView(Context context) {
@@ -48,8 +48,8 @@ public class GameView extends View {
     @Override
     public void onDraw(Canvas canvas) {
         gameCanvas = GameCanvas.getGameCanvas(canvas);
-        canvas.drawColor(Color.GRAY);
-        gameCanvas.drawScene();
+        canvas.drawColor(Color.DKGRAY);
+        gameCanvas.drawScene();;
         invalidate();
     }
 

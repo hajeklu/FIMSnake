@@ -3,21 +3,25 @@ package cz.uhk.fimsnake.model;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 
+import java.util.Random;
+
+import cz.uhk.fimsnake.model.tiles.BonusTile;
 import cz.uhk.fimsnake.model.tiles.Tile;
 
 public class GameCanvas {
 
     public static int TILESIZE = 40;
-
     private static GameCanvas gameCanvas;
-
     private Canvas canvas;
     private Snake snake;
+    private BonusTile bonus;
     private int width;
     private int height;
     private int wbezels;
     private int hbezels;
+    private Paint paint = new Paint(Color.rgb(255, 255, 255));
 
     public static GameCanvas getGameCanvas(Canvas canvas) {
         if (gameCanvas == null)
@@ -29,8 +33,12 @@ public class GameCanvas {
     private GameCanvas(Canvas canvas) {
         this.canvas = canvas;
 
+        paint.setAntiAlias(true);
+        paint.setTextSize(40);
+        paint.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setLinearText(true);
         TILESIZE = canvas.getWidth() / 40;
-
 
         for (int i = canvas.getHeight(); i % TILESIZE != 0; i--) {
             height = i - 1;
@@ -48,7 +56,7 @@ public class GameCanvas {
         System.out.println("Game board width bezel: " + wbezels);
         System.out.println("Game board height bezel: " + hbezels);
         System.out.println("TileSize:" + TILESIZE);
-
+        bonus = new BonusTile(wbezels + 20 * TILESIZE, hbezels + 20 * TILESIZE);
         this.snake = new Snake(wbezels, hbezels);
 
     }
@@ -56,16 +64,25 @@ public class GameCanvas {
     public void tickScene() {
         snake.tick();
         wallWalk(snake.head);
-        System.out.println("X: " + snake.getHead().getX());
-        System.out.println("Y: " + snake.getHead().getY());
+        if (isEat(bonus, snake)) {
+            snake.eatingBonus();
+            generateNewPosition(bonus);
+        }
     }
 
     public void drawScene() {
-        Paint paint = new Paint(Color.BLACK);
+        paint.setColor(Color.BLACK);
+        //paint.setStyle(Paint.Style.STROKE);
         canvas.drawRect(wbezels, hbezels, width + wbezels, height + hbezels, paint);
 
-
+        bonus.draw(canvas);
         snake.draw(canvas);
+        //drawText();
+    }
+
+    private void drawText() {
+        paint.setColor(Color.WHITE);
+        canvas.drawText("Score: " + snake.getLenght(), width - 30, 20, paint);
     }
 
     private void wallWalk(Tile head) {
@@ -78,6 +95,21 @@ public class GameCanvas {
         } else if (head.getY() > height - hbezels) {
             head.setLocation(head.getX(), hbezels);
         }
+    }
+
+
+    private boolean isEat(Tile tile, Snake snake) {
+        return tile.getX() == snake.getHead().getX() && tile.getY() == snake.getHead().getY();
+    }
+
+    private void generateNewPosition(Tile tile) {
+        //a little magic
+        Random r = new Random();
+        int x = wbezels + (r.nextInt(((width / TILESIZE - 1) - 0) + 1) * TILESIZE);
+        int y = hbezels + (r.nextInt(((height / TILESIZE - 1) - 0) + 1) * TILESIZE);
+        System.out.println("Bonus X: " + x);
+        System.out.println("Bonus Y: " + y);
+        bonus = new BonusTile(x, y);
     }
 
     public Canvas getCanvas() {

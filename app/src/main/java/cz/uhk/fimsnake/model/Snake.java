@@ -103,10 +103,11 @@ public class Snake {
             for (Tile tile : snakeTiles) {
                 tile.draw(g);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             /* in case where in threads tick and drawDody methods are running are together throw exception modification array during using.
              * in most FPS this not by visible.
              */
+
         }
     }
 
