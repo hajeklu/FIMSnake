@@ -3,10 +3,13 @@ package cz.uhk.fimsnake.model.tiles;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 
+import cz.uhk.fimsnake.R;
 import cz.uhk.fimsnake.model.Direction;
 import cz.uhk.fimsnake.model.GameCanvas;
 import cz.uhk.fimsnake.model.Snake;
+import cz.uhk.fimsnake.view.GameView;
 
 /**
  * @author Hajek
@@ -14,63 +17,42 @@ import cz.uhk.fimsnake.model.Snake;
  */
 public class HeadTile extends Tile {
 
-    //	private ImageMaker imageMaker;
     private Direction direction;
     private Snake snake;
+    private Drawable drawableDown;
 
     public HeadTile(int x, int y, Direction direction, Snake snake) {
         super(x, y);
         this.snake = snake;
         this.direction = direction;
         paint.setColor(Color.RED);
-        //imageMaker = ImageMaker.getInstance();
+        switch (direction) {
+            case UP:
+                drawable = GameView.gameContext.getResources().getDrawable(R.mipmap.uphead, null);
+                break;
+            case DOWN:
+                drawable = GameView.gameContext.getResources().getDrawable(R.mipmap.downhead, null);
+                break;
+            case LEFT:
+                drawable = GameView.gameContext.getResources().getDrawable(R.mipmap.lefthead, null);
+                break;
+            case RIGHT:
+                drawable = GameView.gameContext.getResources().getDrawable(R.mipmap.righthead, null);
+                break;
+        }
+        drawable.setBounds(x, y, x + GameCanvas.TILESIZE, y + GameCanvas.TILESIZE);
     }
 
     @Override
     public void draw(Canvas g) {
         // texture or fillRect
-        //if (textures || !imageMaker.isReadyPicture()) {
-        g.drawRect(x, y, x + GameCanvas.TILESIZE, y + GameCanvas.TILESIZE, paint);
-    } /*else {
+        //  g.drawRect(x, y, x + GameCanvas.TILESIZE, y + GameCanvas.TILESIZE, paint);
+        // copy code for fast run and better read code
 
-			// copy code for fast run and better read code
-			if (snake.getSnakeTextures() == SnakeTextures.REDCIRCLE) {
-				// texture by direction to rotate head
-				switch (direction) {
-				case UP:
-					g.drawImage(imageMaker.getRedupmouth(), x, y, null);
-					break;
-				case DOWN:
-					g.drawImage(imageMaker.getReddownmouth(), x, y, null);
-					break;
-				case LEFT:
-					g.drawImage(imageMaker.getRedleftmouth(), x, y, null);
-					break;
-				case RIGHT:
-					g.drawImage(imageMaker.getRedrightmouth(), x, y, null);
-					break;
-				}
-			} else {
-				// change color of snake
-				// texture by direction to rotate head
-				switch (direction) {
-				case UP:
-					g.drawImage(imageMaker.getUpmouth(), x, y, null);
-					break;
-				case DOWN:
-					g.drawImage(imageMaker.getDownmouth(), x, y, null);
-					break;
-				case LEFT:
-					g.drawImage(imageMaker.getLeftmouth(), x, y, null);
-					break;
-				case RIGHT:
-					g.drawImage(imageMaker.getRightmouth(), x, y, null);
-					break;
-				}
-			}
-		}
-	}
-*/
+        // texture by direction to rotate head
+        drawable.draw(g);
+    }
+
 
     /**
      * @return BodyTile make body from head

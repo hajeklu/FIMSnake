@@ -4,15 +4,16 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import cz.uhk.fimsnake.R;
 import cz.uhk.fimsnake.model.GameCanvas;
 import cz.uhk.fimsnake.model.Snake;
+import cz.uhk.fimsnake.view.GameView;
 
 /**
  * @author Hajek if snake eat bonus ... draw this tile
  */
 public class FullBodyTile extends Tile {
 
-    //	private ImageMaker imageMaker;
     private Snake snake;
 
     public FullBodyTile(int x, int y, Snake snake) {
@@ -20,7 +21,8 @@ public class FullBodyTile extends Tile {
         this.x = x;
         this.y = y;
         paint.setColor(Color.YELLOW);
-        //imageMaker = ImageMaker.getInstance();
+        drawable = GameView.gameContext.getResources().getDrawable(R.mipmap.fullbody,null);
+        drawable.setBounds(x, y, x + GameCanvas.TILESIZE, y + GameCanvas.TILESIZE);
     }
 
     /**
@@ -28,18 +30,9 @@ public class FullBodyTile extends Tile {
      */
     @Override
     public void draw(Canvas g) {
-        // if can not read picture
-        //	if (textures || !imageMaker.isReadyPicture()) {
-        g.drawRect(x, y, x + GameCanvas.TILESIZE, y + GameCanvas.TILESIZE, paint);
-/*
-		} else {
-			// chance color of snake
-			if (snake.getSnakeTextures() == SnakeTextures.REDCIRCLE) {
-				g.drawImage(imageMaker.getRedfullbody(), x, y, null);
-			} else {
-				g.drawImage(imageMaker.getFullbody(), x, y, null);
-			}
-		}*/
+
+       // g.drawRect(x, y, x + GameCanvas.TILESIZE, y + GameCanvas.TILESIZE, paint);
+        drawable.draw(g);
     }
 
 }

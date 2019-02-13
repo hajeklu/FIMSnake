@@ -8,7 +8,9 @@ import android.graphics.Typeface;
 import java.util.Random;
 
 import cz.uhk.fimsnake.model.tiles.BonusTile;
+import cz.uhk.fimsnake.model.tiles.HeadTile;
 import cz.uhk.fimsnake.model.tiles.Tile;
+import cz.uhk.fimsnake.view.GameView;
 
 public class GameCanvas {
 
@@ -22,6 +24,7 @@ public class GameCanvas {
     private int wbezels;
     private int hbezels;
     private Paint paint = new Paint(Color.rgb(255, 255, 255));
+    private static int TOTALSIZE = 50;
 
     public static GameCanvas getGameCanvas(Canvas canvas) {
         if (gameCanvas == null)
@@ -38,7 +41,7 @@ public class GameCanvas {
         paint.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setLinearText(true);
-        TILESIZE = canvas.getWidth() / 40;
+        TILESIZE = canvas.getWidth() / TOTALSIZE;
 
         for (int i = canvas.getHeight(); i % TILESIZE != 0; i--) {
             height = i - 1;
@@ -61,9 +64,14 @@ public class GameCanvas {
 
     }
 
+    public void restart(){
+        gameCanvas = new GameCanvas(canvas);
+    }
+
     public void tickScene() {
         snake.tick();
         wallWalk(snake.head);
+        GameView.gameRun = !snake.isCollisonHimSelf();
         if (isEat(bonus, snake)) {
             snake.eatingBonus();
             generateNewPosition(bonus);

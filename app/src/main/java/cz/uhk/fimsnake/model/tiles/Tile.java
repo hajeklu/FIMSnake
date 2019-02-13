@@ -1,6 +1,10 @@
 package cz.uhk.fimsnake.model.tiles;
 
+import android.app.Application;
+import android.content.res.Resources;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 
 /**
  * 
@@ -11,8 +15,9 @@ public abstract class Tile implements InterfaceTile {
 
 	protected int x;
 	protected int y;
-	protected Paint paint = new Paint();;
-	public static boolean textures;
+	protected Paint paint = new Paint();
+	protected Drawable drawable;
+
 
 	public Tile(int x, int y) {
 		this.x = x;

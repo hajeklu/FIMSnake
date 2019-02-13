@@ -3,6 +3,8 @@ package cz.uhk.fimsnake.model;
 import android.graphics.Canvas;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import cz.uhk.fimsnake.model.tiles.BodyTile;
@@ -15,7 +17,7 @@ import cz.uhk.fimsnake.model.tiles.Tile;
  * Class of player snake
  */
 public class Snake {
-    protected List<Tile> snakeTiles = new ArrayList<>();
+    protected List snakeTiles = Collections.synchronizedList(new ArrayList<>());
     protected HeadTile head;
     protected Direction direction = Direction.RIGHT;
     protected int lenght = 10;
@@ -45,7 +47,8 @@ public class Snake {
 
     // check collision whit himSelf
     public boolean isCollisonHimSelf() {
-        for (Tile tile : snakeTiles) {
+        List<Tile> snakeTiless = snakeTiles;
+        for (Tile tile : snakeTiless) {
             if (head.equals(tile)) {
                 return true;
             }
@@ -92,22 +95,17 @@ public class Snake {
             if (snakeTiles.get(0) instanceof FullBodyTile) {
                 lenght++;
             }
-            lastTile = snakeTiles.get(0);
+            lastTile = (Tile) snakeTiles.get(0);
             snakeTiles.remove(0);
         }
         eat = false;
     }
 
     public void drawBody(Canvas g) {
-        try {
-            for (Tile tile : snakeTiles) {
-                tile.draw(g);
-            }
-        } catch (Exception e) {
-            /* in case where in threads tick and drawDody methods are running are together throw exception modification array during using.
-             * in most FPS this not by visible.
-             */
-
+        synchronized (snakeTiles) {
+            Iterator i = snakeTiles.iterator(); // Must be in synchronized block
+            while (i.hasNext())
+                ((Tile) i.next()).draw(g);
         }
     }
 
