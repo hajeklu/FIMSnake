@@ -4,15 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.MainActivity"
+    android:background="@drawable/snaketile"
+    >
 
-    <Button
-        android:id="@+id/playbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="310dp"
-        android:layout_marginTop="115dp"
-        android:text="Tap to play"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout android:id="@+id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <ImageButton
+            android:id="@+id/playbtn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/playbutton2"
+            android:layout_centerInParent="true"
+            ></ImageButton>
+
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
