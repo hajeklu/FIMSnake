@@ -6,6 +6,8 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
+import java.sql.SQLOutput;
+
 /**
  * 
  * @author Hajek Abstract tile for extending next tile

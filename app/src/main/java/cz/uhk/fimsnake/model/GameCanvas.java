@@ -18,6 +18,7 @@ public class GameCanvas {
     private static GameCanvas gameCanvas;
     private Canvas canvas;
     private Snake snake;
+    private UISnake uiSnake;
     private BonusTile bonus;
     private int width;
     private int height;
@@ -61,19 +62,32 @@ public class GameCanvas {
         System.out.println("TileSize:" + TILESIZE);
         bonus = new BonusTile(wbezels + 20 * TILESIZE, hbezels + 20 * TILESIZE);
         this.snake = new Snake(wbezels, hbezels);
+        this.uiSnake = new UISnake(width - TILESIZE + wbezels, height - TILESIZE + hbezels);
+        uiSnake.setDirection(Direction.LEFT);
 
     }
 
-    public void restart(){
+    public void restart() {
         gameCanvas = new GameCanvas(canvas);
     }
 
     public void tickScene() {
         snake.tick();
-        wallWalk(snake.head);
-        GameView.gameRun = !snake.isCollisonHimSelf();
+        uiSnake.setNextDirectionAndTick(snake, bonus);
+        wallWalk(snake.getHead());
+        wallWalk(uiSnake.getHead());
+
+
+        if(snake.isCollison(uiSnake) || uiSnake.isCollison(snake))
+            GameView.gameOver();
+
         if (isEat(bonus, snake)) {
             snake.eatingBonus();
+            generateNewPosition(bonus);
+        }
+
+        if (isEat(bonus, uiSnake)) {
+            uiSnake.eatingBonus();
             generateNewPosition(bonus);
         }
     }
@@ -85,6 +99,8 @@ public class GameCanvas {
 
         bonus.draw(canvas);
         snake.draw(canvas);
+
+        uiSnake.draw(canvas);
         //drawText();
     }
 

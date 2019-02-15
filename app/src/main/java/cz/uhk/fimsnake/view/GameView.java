@@ -21,7 +21,7 @@ public class GameView extends View {
     private GameCanvas gameCanvas;
 
 
-    public static boolean gameRun = true;
+    private static boolean gameRun = true;
     public static View gameContext;
 
     public GameView(Context context) {
@@ -43,7 +43,7 @@ public class GameView extends View {
 
         t.start();
 
-    gameContext = this;
+        gameContext = this;
     }
 
     @Override
@@ -55,11 +55,15 @@ public class GameView extends View {
         gameCanvas.drawScene();
         if (!gameRun) {
             Drawable d = getResources().getDrawable(R.mipmap.gameover1, null);
-            int border = (canvas.getHeight()/5)/2;
-            d.setBounds(0, border, canvas.getWidth(), canvas.getHeight()-border);
+            int border = (canvas.getHeight() / 2) / 2;
+            d.setBounds(0, border - 50, canvas.getWidth(), canvas.getHeight() - border - 50);
             d.draw(canvas);
         }
         invalidate();
+    }
+
+    public static void gameOver() {
+        gameRun = false;
     }
 
     @Override

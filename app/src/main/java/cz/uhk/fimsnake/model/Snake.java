@@ -23,11 +23,9 @@ public class Snake {
     protected int lenght = 10;
     protected Tile lastTile;
     protected boolean eat = false;
-    //protected SnakeTextures snakeTextures;
 
-    // set start pozicion
+
     public Snake(int startW, int startH) {
-        //snakeTextures = SnakeTextures.BLUECIRCLE;
         head = new HeadTile(startW, startH, direction, this);
         lastTile = new BodyTile(-1, -1, this);
     }
@@ -42,13 +40,12 @@ public class Snake {
         if (head.equals(snake.getHead())) {
             return true;
         }
-        return false;
+        return isCollisonHimSelf();
     }
 
     // check collision whit himSelf
     public boolean isCollisonHimSelf() {
-        List<Tile> snakeTiless = snakeTiles;
-        for (Tile tile : snakeTiless) {
+        for (Tile tile : (List<Tile>)snakeTiles) {
             if (head.equals(tile)) {
                 return true;
             }
@@ -185,12 +182,4 @@ public class Snake {
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
-	/*
-	public SnakeTextures getSnakeTextures() {
-		return snakeTextures;
-	}
-	
-	public void setTypOfSnake(SnakeTextures snakeTextures) {
-		this.snakeTextures = snakeTextures;
-	}*/
 }
