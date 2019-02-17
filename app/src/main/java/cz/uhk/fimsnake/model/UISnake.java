@@ -182,7 +182,7 @@ public class UISnake extends Snake {
 			}
 		}
 		// check enemy
-		for (Tile tile : (List<Tile>)snakeTiles) {
+		for (Tile tile : enemy.getSnakeTiles()) {
 			for (Tile t : nextTiles) {
 				if (tile.equals(t)) {
 					return true;

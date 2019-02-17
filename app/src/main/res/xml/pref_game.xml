@@ -1,0 +1,35 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="check_box_preference_1"
+        android:summary="@string/texturesSummary"
+        android:title="@string/texturesString" />
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="switch_preference_textures"
+        android:title="@string/preferencesSecondPlayer" />
+
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/pref_snake_color_tiles"
+        android:entryValues="@array/pref_snake_color_values"
+        android:key="example_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_snake_color"
+        android:summary="@string/pref_title_snake_color_summary"/>
+
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_snake_color_tiles"
+        android:entryValues="@array/pref_snake_color_values"
+        android:key="example_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_snake_color2"
+        android:summary="@string/pref_title_snake_color_summary"/>
+
+
+</PreferenceScreen>
+
