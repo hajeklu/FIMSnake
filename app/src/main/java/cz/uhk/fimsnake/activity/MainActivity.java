@@ -3,6 +3,7 @@ package cz.uhk.fimsnake.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -13,13 +14,18 @@ import android.widget.RelativeLayout;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
 import cz.uhk.fimsnake.R;
 
 public class MainActivity extends AppCompatActivity {
 
     private AdView mAdView;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
         mAdView.loadAd(adRequest);
 
 
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+
         ImageButton playButton = findViewById(R.id.playbtn);
 
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, GameActivity.class);
                 startActivity(intent);
+
             }
         });
 
@@ -50,8 +62,15 @@ public class MainActivity extends AppCompatActivity {
         preff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                }
+
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
+
             }
         });
     }
