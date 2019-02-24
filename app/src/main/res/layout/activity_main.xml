@@ -36,6 +36,15 @@
             />
 
 
+        <ImageButton
+            android:id="@+id/score"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/scoreicon" />
+
+
         <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"

@@ -7,8 +7,8 @@ import android.graphics.Typeface;
 
 import java.util.Random;
 
+import cz.uhk.fimsnake.dbs.DatabaseHelper;
 import cz.uhk.fimsnake.model.tiles.BonusTile;
-import cz.uhk.fimsnake.model.tiles.HeadTile;
 import cz.uhk.fimsnake.model.tiles.Tile;
 import cz.uhk.fimsnake.view.GameView;
 
@@ -26,17 +26,18 @@ public class GameCanvas {
     private int hbezels;
     private Paint paint = new Paint(Color.rgb(255, 255, 255));
     private static int TOTALSIZE = 50;
+    private GameView gameView;
 
-    public static GameCanvas getGameCanvas(Canvas canvas) {
+    public static GameCanvas getGameCanvas(Canvas canvas, GameView gameView) {
         if (gameCanvas == null)
-            gameCanvas = new GameCanvas(canvas);
+            gameCanvas = new GameCanvas(canvas, gameView);
         gameCanvas.setCanvas(canvas);
         return gameCanvas;
     }
 
-    private GameCanvas(Canvas canvas) {
+    private GameCanvas(Canvas canvas, GameView gameView) {
         this.canvas = canvas;
-
+        this.gameView = gameView;
         paint.setAntiAlias(true);
         paint.setTextSize(40);
         paint.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
@@ -68,7 +69,7 @@ public class GameCanvas {
     }
 
     public void restart() {
-        gameCanvas = new GameCanvas(canvas);
+        gameCanvas = new GameCanvas(canvas, gameView);
     }
 
     public void tickScene() {
@@ -78,8 +79,9 @@ public class GameCanvas {
         wallWalk(uiSnake.getHead());
 
 
-        if(snake.isCollison(uiSnake) || uiSnake.isCollison(snake))
-            GameView.gameOver();
+        if(snake.isCollison(uiSnake) || uiSnake.isCollison(snake)) {
+            gameView.gameOver();
+        }
 
         if (isEat(bonus, snake)) {
             snake.eatingBonus();
@@ -134,6 +136,11 @@ public class GameCanvas {
         System.out.println("Bonus X: " + x);
         System.out.println("Bonus Y: " + y);
         bonus = new BonusTile(x, y);
+    }
+
+    public boolean saveScore(DatabaseHelper databaseHelper){
+        databaseHelper.addScorePlayer(snake.getLenght(), Players.PLAYER1);
+        return databaseHelper.addScorePlayer(uiSnake.getLenght(), Players.PLAYER2);
     }
 
     public Canvas getCanvas() {

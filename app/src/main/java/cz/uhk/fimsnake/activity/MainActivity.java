@@ -7,18 +7,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
-
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.reward.RewardItem;
-import com.google.android.gms.ads.reward.RewardedVideoAd;
-import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
 import cz.uhk.fimsnake.R;
 
@@ -71,6 +64,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
 
+            }
+        });
+
+        ImageButton scoreBnt = findViewById(R.id.score);
+
+        scoreBnt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -10,6 +10,7 @@ import android.view.View;
 import java.util.Timer;
 
 import cz.uhk.fimsnake.R;
+import cz.uhk.fimsnake.dbs.DatabaseHelper;
 import cz.uhk.fimsnake.model.GameCanvas;
 
 public class GameView extends View {
@@ -19,7 +20,7 @@ public class GameView extends View {
     private Timer timer;
     private int speed = 130;
     private GameCanvas gameCanvas;
-
+    private DatabaseHelper databaseHelper;
 
     private static boolean gameRun = true;
     public static View gameContext;
@@ -43,15 +44,14 @@ public class GameView extends View {
 
         t.start();
 
+        databaseHelper = new DatabaseHelper(context);
         gameContext = this;
     }
 
     @Override
     public void onDraw(Canvas canvas) {
         canvas.drawColor(Color.DKGRAY);
-
-
-        gameCanvas = GameCanvas.getGameCanvas(canvas);
+        gameCanvas = GameCanvas.getGameCanvas(canvas, this);
         gameCanvas.drawScene();
         if (!gameRun) {
             Drawable d = getResources().getDrawable(R.mipmap.gameover1, null);
@@ -62,7 +62,9 @@ public class GameView extends View {
         invalidate();
     }
 
-    public static void gameOver() {
+    public void gameOver() {
+
+        gameCanvas.saveScore(databaseHelper);
         gameRun = false;
     }
 
