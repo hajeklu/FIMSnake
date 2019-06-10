@@ -11,6 +11,7 @@ import java.util.Timer;
 
 import cz.uhk.fimsnake.R;
 import cz.uhk.fimsnake.dbs.DatabaseHelper;
+import cz.uhk.fimsnake.dbs.IDAO;
 import cz.uhk.fimsnake.model.GameCanvas;
 
 public class GameView extends View {
@@ -20,7 +21,7 @@ public class GameView extends View {
     private Timer timer;
     private int speed = 130;
     private GameCanvas gameCanvas;
-    private DatabaseHelper databaseHelper;
+    private IDAO databaseHelper;
 
     private static boolean gameRun = true;
     public static View gameContext;

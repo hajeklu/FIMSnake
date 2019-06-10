@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import java.util.Random;
 
 import cz.uhk.fimsnake.dbs.DatabaseHelper;
+import cz.uhk.fimsnake.dbs.IDAO;
 import cz.uhk.fimsnake.model.tiles.BonusTile;
 import cz.uhk.fimsnake.model.tiles.Tile;
 import cz.uhk.fimsnake.view.GameView;
@@ -138,7 +139,7 @@ public class GameCanvas {
         bonus = new BonusTile(x, y);
     }
 
-    public boolean saveScore(DatabaseHelper databaseHelper){
+    public boolean saveScore(IDAO databaseHelper){
         databaseHelper.addScorePlayer(snake.getLenght(), Players.PLAYER1);
         return databaseHelper.addScorePlayer(uiSnake.getLenght(), Players.PLAYER2);
     }

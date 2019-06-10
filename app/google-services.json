@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "126717100426",
+    "firebase_url": "https://snake-257cb.firebaseio.com",
+    "project_id": "snake-257cb",
+    "storage_bucket": "snake-257cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126717100426:android:640c7ae53b32dd12",
+        "android_client_info": {
+          "package_name": "cz.uhk.fimsnake"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126717100426-9jtgtjjnkh4sc3itrhfu75ve1d73an1n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cz.uhk.fimsnake",
+            "certificate_hash": "b88f5bdf1f9485f2094975b92cec4aaf989cd067"
+          }
+        },
+        {
+          "client_id": "126717100426-klq4jpd0hu5ffjtgcb6gl1e7ktn492bi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMzcoEuOy64jBTUAn72HLgFECWwpExUfc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126717100426-klq4jpd0hu5ffjtgcb6gl1e7ktn492bi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

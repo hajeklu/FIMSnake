@@ -14,11 +14,12 @@ import java.util.List;
 
 import cz.uhk.fimsnake.R;
 import cz.uhk.fimsnake.dbs.DatabaseHelper;
+import cz.uhk.fimsnake.dbs.IDAO;
 import cz.uhk.fimsnake.model.Players;
 
 public class ScoreActivity extends AppCompatActivity {
 
-    private DatabaseHelper databaseHelper;
+    private IDAO databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

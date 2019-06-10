@@ -12,7 +12,7 @@ import java.util.List;
 
 import cz.uhk.fimsnake.model.Players;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper implements IDAO {
 
     private static final String TAG = "DatabaseHelper";
 
@@ -47,6 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    @Override
     public boolean addScorePlayer(int data, Players player) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -63,6 +64,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    @Override
     public List<Integer> getData(Players player) {
         SQLiteDatabase database = this.getReadableDatabase();
 
