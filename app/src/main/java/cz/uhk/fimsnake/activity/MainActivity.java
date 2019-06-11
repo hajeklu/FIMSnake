@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
                 startActivity(intent);
+
             }
         });
     }

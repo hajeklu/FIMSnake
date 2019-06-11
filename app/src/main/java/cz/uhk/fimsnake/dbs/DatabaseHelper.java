@@ -10,7 +10,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.uhk.fimsnake.model.Players;
+import cz.uhk.fimsnake.model.user.Players;
+import cz.uhk.fimsnake.model.user.User;
 
 public class DatabaseHelper extends SQLiteOpenHelper implements IDAO {
 
@@ -90,6 +91,15 @@ public class DatabaseHelper extends SQLiteOpenHelper implements IDAO {
         }
 
         return scores;
+
+    }
+
+    @Override
+    public void setUser(String mac) {
+    }
+
+    @Override
+    public void addUser(User user) {
 
     }
 
