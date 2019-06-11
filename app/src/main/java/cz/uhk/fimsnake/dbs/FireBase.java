@@ -20,13 +20,11 @@ import cz.uhk.fimsnake.model.user.User;
 
 public class FireBase extends AppCompatActivity implements IDAO {
 
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
 
     @Override
     public boolean addScorePlayer(int data, Players player) {
-        DatabaseReference myRef = database.getReference("users");
         return false;
     }
 
@@ -45,6 +43,7 @@ public class FireBase extends AppCompatActivity implements IDAO {
                     User u = new User();
                     u.setAlias(result.get(0).get("alias").toString());
                     u.setMacAddress(result.get(0).get("mac_address").toString());
+                    System.out.println(u);
                     User.setUser(u);
                 }
             }
