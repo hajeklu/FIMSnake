@@ -1,5 +1,7 @@
 package cz.uhk.fimsnake.dbs;
 
+import android.content.Context;
+
 import java.util.List;
 
 import cz.uhk.fimsnake.model.user.Players;

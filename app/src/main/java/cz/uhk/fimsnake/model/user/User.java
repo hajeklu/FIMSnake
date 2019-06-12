@@ -2,6 +2,8 @@ package cz.uhk.fimsnake.model.user;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import cz.uhk.fimsnake.dbs.FireBase;
 import cz.uhk.fimsnake.dbs.IDAO;
@@ -40,8 +42,13 @@ public class User {
         return user;
     }
 
-    public static void setUser(User user) {
+    public static void setUser(User user, Context context) {
         User.user = user;
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("pref_alias", User.getUser().getAlias());
+        editor.putString("pref_mac", User.getUser().getMacAddress());
+        editor.commit();
     }
 
     @Override

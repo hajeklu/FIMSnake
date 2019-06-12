@@ -18,12 +18,13 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        IDAO idao = new FireBase(getApplicationContext());
+        idao.setUser(MacAddressProvider.getInstance().getMacAddress(getApplicationContext()));
+
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                IDAO idao = new FireBase();
-                idao.setUser(MacAddressProvider.getInstance().getMacAddress(getApplicationContext()));
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 finish();
             }

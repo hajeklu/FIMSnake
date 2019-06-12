@@ -1,6 +1,8 @@
 package cz.uhk.fimsnake.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
 import cz.uhk.fimsnake.R;
+import cz.uhk.fimsnake.model.user.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
                 startActivity(intent);
-
             }
         });
     }

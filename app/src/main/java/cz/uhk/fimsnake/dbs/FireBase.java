@@ -1,5 +1,6 @@
 package cz.uhk.fimsnake.dbs;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
@@ -18,10 +19,14 @@ import java.util.Map;
 import cz.uhk.fimsnake.model.user.Players;
 import cz.uhk.fimsnake.model.user.User;
 
-public class FireBase extends AppCompatActivity implements IDAO {
+public class FireBase implements IDAO {
 
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+    private Context context;
 
+    public FireBase(Context context) {
+        this.context = context;
+    }
 
     @Override
     public boolean addScorePlayer(int data, Players player) {
@@ -44,7 +49,7 @@ public class FireBase extends AppCompatActivity implements IDAO {
                     u.setAlias(result.get(0).get("alias").toString());
                     u.setMacAddress(result.get(0).get("mac_address").toString());
                     System.out.println(u);
-                    User.setUser(u);
+                    User.setUser(u, context);
                 }
             }
         });
