@@ -13,6 +13,7 @@
     </string>
 
     <string name="pref_title_display_name">Display alias</string>
+    <string name="pref_title_mac">Mac address</string>
     <string name="pref_default_display_name">Unknow</string>
 
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
@@ -67,7 +68,7 @@
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Notifications</string>
 
-    <string name="pref_title_new_message_notifications">New message notifications</string>
+    <string name="pref_title_new_message_notifications">Enable notifications</string>
 
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>

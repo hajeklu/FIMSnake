@@ -13,11 +13,6 @@
         android:title="@string/pref_header_notifications" />
 
     <header
-        android:fragment="cz.uhk.fimsnake.activity.SettingsActivity$DataSyncPreferenceFragment"
-        android:icon="@drawable/ic_sync_black_24dp"
-        android:title="@string/pref_header_data_sync" />
-
-    <header
         android:fragment="cz.uhk.fimsnake.activity.SettingsActivity$GamePreferenceFragment"
         android:icon="@drawable/ic_game_black"
         android:title="@string/pref_game" />

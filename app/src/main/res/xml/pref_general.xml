@@ -8,15 +8,7 @@
 
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
-    <EditTextPreference
-        android:capitalize="words"
-        android:defaultValue="@string/pref_default_display_name"
-        android:inputType="textCapWords"
-        android:key="pref_alias"
-        android:maxLines="1"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:title="@string/pref_title_display_name" />
+
 
 
     <EditTextPreference
@@ -24,11 +16,21 @@
         android:defaultValue="@string/pref_default_display_name"
         android:inputType="textCapWords"
         android:key="pref_mac"
+        android:enabled="true"
         android:maxLines="1"
-        android:summary="pref_mac"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Mac address: " />
+        android:title="@string/pref_title_display_name" />
 
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_default_display_name"
+        android:inputType="textCapWords"
+        android:key="pref_alias"
+        android:enabled="false"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_mac" />
 
 </PreferenceScreen>

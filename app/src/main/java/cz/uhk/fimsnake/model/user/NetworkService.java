@@ -4,15 +4,17 @@ import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
-public class MacAddressProvider{
+import java.net.InetAddress;
+
+public class NetworkService {
 
     private String macAddress;
-    private static MacAddressProvider provider;
-    private MacAddressProvider() { }
+    private static NetworkService provider;
+    private NetworkService() { }
 
-    public static MacAddressProvider getInstance(){
+    public static NetworkService getInstance(){
         if(provider == null){
-            provider = new MacAddressProvider();
+            provider = new NetworkService();
 
         }
         return provider;
@@ -29,5 +31,16 @@ public class MacAddressProvider{
 
     public void setMacAddress(String macAddress) {
         this.macAddress = macAddress;
+    }
+
+    public boolean isInternetAvailable() {
+        try {
+            InetAddress ipAddr = InetAddress.getByName("google.com");
+            //You can replace it with your name
+            return !ipAddr.equals("");
+
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
