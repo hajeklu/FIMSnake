@@ -2,19 +2,20 @@ package cz.uhk.fimsnake.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import cz.uhk.fimsnake.R;
+import cz.uhk.fimsnake.model.user.User;
 
 public class ScoreFireBase extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -58,6 +59,12 @@ public class ScoreFireBase extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.score_fire_base, menu);
+        TextView alias_view = findViewById(R.id.score_alias);
+        System.out.println(alias_view);
+        alias_view.setText(User.getUser().getAlias());
+
+        TextView mac_view = findViewById(R.id.score_mac);
+        mac_view.setText(User.getUser().getMacAddress());
         return true;
     }
 

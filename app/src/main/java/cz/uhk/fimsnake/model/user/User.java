@@ -53,6 +53,7 @@ public class User {
         editor.putString("pref_alias", User.getUser().macAddress);
         editor.putString("pref_mac", User.getUser().alias);
         editor.commit();
+        System.out.println("User set " + user);
     }
 
     @Override
