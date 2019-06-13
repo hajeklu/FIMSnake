@@ -10,12 +10,15 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
 import cz.uhk.fimsnake.R;
+import cz.uhk.fimsnake.model.user.NetworkService;
 import cz.uhk.fimsnake.model.user.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -75,8 +78,13 @@ public class MainActivity extends AppCompatActivity {
         scoreBnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
-                startActivity(intent);
+                System.out.println("onClick: " +NetworkService.getInstance().isInternetAvailable(getApplicationContext()) );
+                if(NetworkService.getInstance().isInternetAvailable(getApplicationContext())) {
+                    Intent intent = new Intent(MainActivity.this, ScoreFireBase.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getApplicationContext(),"Internet connection needed.", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

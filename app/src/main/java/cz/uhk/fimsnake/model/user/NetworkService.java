@@ -1,10 +1,13 @@
 package cz.uhk.fimsnake.model.user;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
-import java.net.InetAddress;
+import static android.support.v4.content.ContextCompat.getSystemService;
+
 
 public class NetworkService {
 
@@ -33,11 +36,13 @@ public class NetworkService {
         this.macAddress = macAddress;
     }
 
-    public boolean isInternetAvailable() {
+    public boolean isInternetAvailable(Context context) {
         try {
-            InetAddress ipAddr = InetAddress.getByName("google.com");
-            //You can replace it with your name
-            return !ipAddr.equals("");
+            ConnectivityManager cm =
+                    (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+            return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
         } catch (Exception e) {
             return false;
