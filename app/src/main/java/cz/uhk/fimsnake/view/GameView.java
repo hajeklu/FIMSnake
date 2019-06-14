@@ -11,6 +11,7 @@ import java.util.Timer;
 
 import cz.uhk.fimsnake.R;
 import cz.uhk.fimsnake.dbs.DatabaseHelper;
+import cz.uhk.fimsnake.dbs.FireBase;
 import cz.uhk.fimsnake.dbs.IDAO;
 import cz.uhk.fimsnake.model.GameCanvas;
 
@@ -45,7 +46,7 @@ public class GameView extends View {
 
         t.start();
 
-        databaseHelper = new DatabaseHelper(context);
+        databaseHelper = new FireBase(context);
         gameContext = this;
     }
 

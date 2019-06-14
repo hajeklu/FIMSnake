@@ -20,7 +20,7 @@ import cz.uhk.fimsnake.model.user.User;
 public class ScoreFireBase extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

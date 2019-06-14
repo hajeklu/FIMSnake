@@ -12,6 +12,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +31,12 @@ public class FireBase implements IDAO {
 
     @Override
     public boolean addScorePlayer(int data, Players player) {
-        return false;
+        Map<String, Object> put_data = new HashMap<>();
+        put_data.put("date", Calendar.getInstance().getTime());
+        put_data.put("value", data);
+        put_data.put("user_id", User.getUser().getMacAddress());
+        firestore.collection("score").add(data);
+        return true;
     }
 
     @Override
