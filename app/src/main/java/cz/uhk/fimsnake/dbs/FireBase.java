@@ -35,13 +35,13 @@ public class FireBase implements IDAO {
         put_data.put("date", Calendar.getInstance().getTime());
         put_data.put("value", data);
         put_data.put("user_id", User.getUser().getMacAddress());
-        firestore.collection("score").add(data);
+        firestore.collection("score").add(put_data);
         return true;
     }
 
     @Override
-    public List<Integer> getData(Players player) {
-        return null;
+    public void getData(OnCompleteListener listener) {
+        firestore.collection("score").get().addOnCompleteListener(listener);
     }
 
     @Override

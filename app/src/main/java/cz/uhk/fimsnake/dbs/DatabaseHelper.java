@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,9 +66,14 @@ public class DatabaseHelper extends SQLiteOpenHelper implements IDAO {
         return result != -1;
     }
 
-
     @Override
-    public List<Integer> getData(Players player) {
+    public void getData(OnCompleteListener listener) {
+
+    }
+
+/*
+    @Override
+    public void getData(Players player) {
         SQLiteDatabase database = this.getReadableDatabase();
 
         String query = "SELECT * FROM ";
@@ -93,6 +100,8 @@ public class DatabaseHelper extends SQLiteOpenHelper implements IDAO {
         return scores;
 
     }
+*/
+
 
     @Override
     public void setUser(String mac) {

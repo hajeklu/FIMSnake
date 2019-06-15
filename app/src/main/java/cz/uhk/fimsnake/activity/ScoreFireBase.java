@@ -15,12 +15,14 @@ import android.view.View;
 import android.widget.TextView;
 
 import cz.uhk.fimsnake.R;
+import cz.uhk.fimsnake.dbs.FireBase;
+import cz.uhk.fimsnake.dbs.IDAO;
 import cz.uhk.fimsnake.model.user.User;
 
 public class ScoreFireBase extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    private IDAO idao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,8 @@ public class ScoreFireBase extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        idao = new FireBase(getApplicationContext());
     }
 
     @Override
@@ -90,7 +94,7 @@ public class ScoreFireBase extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            navHome();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -106,5 +110,11 @@ public class ScoreFireBase extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void navHome(){
+        System.out.println("Home selected");
+
+        setContentView(R.layout.recycler_view);
     }
 }

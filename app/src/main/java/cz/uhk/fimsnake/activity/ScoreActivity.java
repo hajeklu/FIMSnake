@@ -28,7 +28,7 @@ public class ScoreActivity extends AppCompatActivity {
 
         ListView p1List = findViewById(R.id.p1score);
         ListView p2List = findViewById(R.id.p2score);
-
+/*
         List<Integer> p1Scores = databaseHelper.getData(Players.PLAYER1);
         List<Integer> p2Scores = databaseHelper.getData(Players.PLAYER2);
 
@@ -44,6 +44,6 @@ public class ScoreActivity extends AppCompatActivity {
         p1List.setAdapter(adapterP1);
 
         ListAdapter adapterP2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, p2Scores);
-        p2List.setAdapter(adapterP2);
+        p2List.setAdapter(adapterP2);*/
     }
 }

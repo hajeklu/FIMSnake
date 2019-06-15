@@ -1,6 +1,6 @@
 package cz.uhk.fimsnake.dbs;
 
-import android.content.Context;
+import com.google.android.gms.tasks.OnCompleteListener;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public interface IDAO {
 
     boolean addScorePlayer(int data, Players player);
 
-    List<Integer> getData(Players player);
+    void getData(OnCompleteListener listener);
 
     void setUser(String mac);
 
