@@ -4,6 +4,8 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:id="@+id/score_item_layout"
     >
 
     <LinearLayout
@@ -42,12 +44,11 @@
         <TextView
             android:id="@+id/score_item_alias"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="Alias"
-            android:paddingRight="20dp"
             android:paddingTop="40dp"
-            android:textStyle="italic"
-            />
+            android:paddingRight="20dp"
+            android:textStyle="italic" />
 
     </LinearLayout>
 

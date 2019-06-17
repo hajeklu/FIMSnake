@@ -16,4 +16,6 @@ public interface IDAO {
     void setUser(String mac);
 
     void addUser(User user);
+
+    void setScoreToCache(Cache cache);
 }

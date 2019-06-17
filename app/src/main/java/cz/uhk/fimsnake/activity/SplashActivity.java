@@ -8,6 +8,7 @@ import android.os.Bundle;
 import cz.uhk.fimsnake.R;
 import cz.uhk.fimsnake.dbs.FireBase;
 import cz.uhk.fimsnake.dbs.IDAO;
+import cz.uhk.fimsnake.dbs.MemoryCache;
 import cz.uhk.fimsnake.model.user.NetworkService;
 
 public class SplashActivity extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class SplashActivity extends AppCompatActivity {
 
         IDAO idao = new FireBase(getApplicationContext());
         idao.setUser(NetworkService.getInstance().getMacAddress(getApplicationContext()));
+        idao.setScoreToCache(MemoryCache.getInstance());
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

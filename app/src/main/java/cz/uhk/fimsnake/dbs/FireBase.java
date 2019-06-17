@@ -5,18 +5,26 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.Timestamp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cz.uhk.fimsnake.model.Score;
 import cz.uhk.fimsnake.model.user.Players;
 import cz.uhk.fimsnake.model.user.User;
 
@@ -67,5 +75,59 @@ public class FireBase implements IDAO {
         data.put("alias", user.getAlias());
         data.put("mac_address", user.getMacAddress());
         firestore.collection("users").add(data);
+    }
+
+    @Override
+    public void setScoreToCache(final Cache cache) {
+     /*   firestore.collection("score").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                List<DocumentSnapshot> result = task.getResult().getDocuments();
+                List<Score> scores = new ArrayList<>();
+                for (int i = 0; i<result.size();i++){
+                    DocumentSnapshot snapshot = result.get(i);
+                    Score s = new Score();
+                    Timestamp timestamp = (Timestamp) snapshot.get("date");
+                    s.setDate(timestamp.toDate());
+                    s.setScore(((Long) snapshot.get("value")).intValue());
+                    System.out.println(snapshot.get("user_id"));
+
+
+                    scores.add(s);
+                }
+                cache.resetAllScore(scores);
+            }
+        });*/
+
+        Query firstQuery = firestore.collection("score");
+        Query secondQuery = firestore.collection("users");
+
+        Task firstTask = firstQuery.get();
+        Task secondTask = secondQuery.get();
+
+        Task combinedTask = Tasks.whenAllSuccess(firstTask, secondTask).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
+            @Override
+            public void onSuccess(List<Object> list) {
+               for(Object o : list){
+                   Class<?> clazz = o.getClass();
+                   Field field = null;
+                   Field[] fields = clazz.getDeclaredFields();
+
+                   for(int i = 0; i< fields.length; i++){
+                       field = fields[i];
+                       System.out.println(field);
+                   }
+
+                  try {
+                       field = clazz.getField("com.google.firebase.firestore.QuerySnapshot.firestore");
+                   } catch (NoSuchFieldException e) {
+                       e.printStackTrace();
+                   }
+                   System.out.println("------------------------------------------------------------------------------------------");
+                   System.out.println(field);
+                   System.out.println("------------------------------------------------------------------------------------------");
+               }
+            }
+        });
     }
 }

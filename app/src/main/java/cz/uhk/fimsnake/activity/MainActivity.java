@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 System.out.println("onClick: " +NetworkService.getInstance().isInternetAvailable(getApplicationContext()) );
                 if(NetworkService.getInstance().isInternetAvailable(getApplicationContext())) {
-                    Intent intent = new Intent(MainActivity.this, ScoreFireBase.class);
+                    Intent intent = new Intent(MainActivity.this, TapScore.class);
                     startActivity(intent);
                 }else {
                     Toast.makeText(getApplicationContext(),"Internet connection needed.", Toast.LENGTH_LONG).show();

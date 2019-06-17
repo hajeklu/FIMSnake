@@ -112,5 +112,10 @@ public class DatabaseHelper extends SQLiteOpenHelper implements IDAO {
 
     }
 
+    @Override
+    public void setScoreToCache(Cache cache) {
+
+    }
+
 
 }
