@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.MenuWrapperFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,19 +26,17 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         IDAO idao = new FireBase(getApplicationContext());
-        idao.setUser(NetworkService.getInstance().getMacAddress(getApplicationContext()));
+        idao.setUser();
         idao.setScoreToCache(MemoryCache.getInstance());
-/*
+
+
         User u = new User();
         u.setAlias("Muj test user");
-        u.setMacAddress(NetworkService.getInstance().getMacAddress(getApplicationContext()));
-        List<Score> s = new ArrayList<>();
-        Score score = new Score();
-        score.setDate(new Date());
-        score.setScore(20);
-        s.add(score);
-        u.setScores(s);
-        idao.addUser(u);*/
+        u.setMacAddress("03:00:00:00:00:00");
+     //   idao.addUser(u);
+     //   idao.addScoreToPlayer(40);
+
+        idao.setScoreToCache(MemoryCache.getInstance());
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

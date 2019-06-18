@@ -1,17 +1,21 @@
 package cz.uhk.fimsnake.dbs;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import javax.annotation.Nullable;
+import java.util.Date;
+import java.util.List;
 
+import javax.annotation.Nullable;
 import cz.uhk.fimsnake.model.user.NetworkService;
-import cz.uhk.fimsnake.model.user.Players;
 import cz.uhk.fimsnake.model.user.Score;
 import cz.uhk.fimsnake.model.user.User;
 
@@ -19,40 +23,61 @@ public class FireBase implements IDAO {
 
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     private Context context;
+    private String mac;
 
     public FireBase(Context context) {
         this.context = context;
+        this.mac = NetworkService.getInstance().getMacAddress(context);
     }
 
     @Override
     public boolean addScoreToPlayer(int value) {
-        final String mac = NetworkService.getInstance().getMacAddress(context);
-        firestore.collection("snake_user").whereEqualTo("macAddress", mac).addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                
-            }
-        });
+        Score s = new Score();
+        s.setDate(new Date());
+        s.setScore(value);
+        firestore.collection("snake_user").document(mac).collection("scores").add(s);
         return false;
     }
 
     @Override
     public void getData(OnCompleteListener listener) {
-
     }
 
     @Override
-    public void setUser(String mac) {
-
+    public void setUser() {
+        firestore.collection("snake_user").document(mac).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                User u = new User();
+                u.setAlias(documentSnapshot.get("alias").toString());
+                u.setMacAddress(documentSnapshot.get("macAddress").toString());
+                System.out.println(u);
+                User.setUser(u, context);
+            }
+        });
     }
 
     @Override
     public void addUser(User user) {
-        firestore.collection("snake_user").add(user);
+        firestore.collection("snake_user").document(user.getMacAddress()).set(user);
     }
 
     @Override
     public void setScoreToCache(Cache cache) {
+        firestore.collection("snake_user").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()){
+                    documentSnapshot.getReference().collection("scores").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            System.out.println("******************************************************");
+                            System.out.println(task.getResult().getDocuments().size());
+                        }
+                    });
+                }
+            }
+        });
 
     }
 /*

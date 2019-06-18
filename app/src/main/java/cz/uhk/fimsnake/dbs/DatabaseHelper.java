@@ -1,4 +1,4 @@
-package cz.uhk.fimsnake.dbs;
+/*package cz.uhk.fimsnake.dbs;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -101,7 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper implements IDAO {
         return scores;
 
     }
-*/
+
 
 
     @Override
@@ -120,3 +120,4 @@ public class DatabaseHelper extends SQLiteOpenHelper implements IDAO {
 
 
 }
+*/

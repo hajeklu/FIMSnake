@@ -5,6 +5,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import java.util.List;
 
 import cz.uhk.fimsnake.model.user.Players;
+import cz.uhk.fimsnake.model.user.Score;
 import cz.uhk.fimsnake.model.user.User;
 
 public interface IDAO {
@@ -13,7 +14,7 @@ public interface IDAO {
 
     void getData(OnCompleteListener listener);
 
-    void setUser(String mac);
+    void setUser();
 
     void addUser(User user);
 

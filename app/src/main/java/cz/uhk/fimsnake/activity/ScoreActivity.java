@@ -10,7 +10,6 @@ import android.widget.ListView;
 import java.util.List;
 
 import cz.uhk.fimsnake.R;
-import cz.uhk.fimsnake.dbs.DatabaseHelper;
 import cz.uhk.fimsnake.dbs.IDAO;
 import cz.uhk.fimsnake.model.user.Players;
 
@@ -23,7 +22,7 @@ public class ScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-        databaseHelper = new DatabaseHelper(this);
+      //  databaseHelper = new DatabaseHelper(this);
 
 
         ListView p1List = findViewById(R.id.p1score);

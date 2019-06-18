@@ -10,7 +10,6 @@ public class User {
     private String macAddress;
     private String alias;
     private static User user;
-    private List<Score> scores;
 
     public User(String macAddress, String alias) {
         this.macAddress = macAddress;
@@ -58,13 +57,5 @@ public class User {
     @Override
     public int hashCode() {
         return alias.length() * macAddress.length();
-    }
-
-    public List<Score> getScores() {
-        return scores;
-    }
-
-    public void setScores(List<Score> scores) {
-        this.scores = scores;
     }
 }
