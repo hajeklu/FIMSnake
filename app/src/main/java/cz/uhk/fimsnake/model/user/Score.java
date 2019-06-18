@@ -1,4 +1,4 @@
-package cz.uhk.fimsnake.model;
+package cz.uhk.fimsnake.model.user;
 
 import java.util.Date;
 
@@ -6,17 +6,8 @@ import cz.uhk.fimsnake.model.user.User;
 
 public class Score {
 
-    private User user;
     private int score;
     private Date date;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public int getScore() {
         return score;

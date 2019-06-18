@@ -1,31 +1,18 @@
 package cz.uhk.fimsnake.dbs;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
-import com.google.firebase.Timestamp;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.annotation.Nullable;
 
-import cz.uhk.fimsnake.model.Score;
+import cz.uhk.fimsnake.model.user.NetworkService;
 import cz.uhk.fimsnake.model.user.Players;
+import cz.uhk.fimsnake.model.user.Score;
 import cz.uhk.fimsnake.model.user.User;
 
 public class FireBase implements IDAO {
@@ -38,7 +25,39 @@ public class FireBase implements IDAO {
     }
 
     @Override
-    public boolean addScorePlayer(int data, Players player) {
+    public boolean addScoreToPlayer(int value) {
+        final String mac = NetworkService.getInstance().getMacAddress(context);
+        firestore.collection("snake_user").whereEqualTo("macAddress", mac).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                
+            }
+        });
+        return false;
+    }
+
+    @Override
+    public void getData(OnCompleteListener listener) {
+
+    }
+
+    @Override
+    public void setUser(String mac) {
+
+    }
+
+    @Override
+    public void addUser(User user) {
+        firestore.collection("snake_user").add(user);
+    }
+
+    @Override
+    public void setScoreToCache(Cache cache) {
+
+    }
+/*
+    @Override
+    public boolean addScoreToPlayer(int data, Players player) {
         Map<String, Object> put_data = new HashMap<>();
         put_data.put("date", Calendar.getInstance().getTime());
         put_data.put("value", data);
@@ -79,7 +98,7 @@ public class FireBase implements IDAO {
 
     @Override
     public void setScoreToCache(final Cache cache) {
-     /*   firestore.collection("score").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        firestore.collection("score").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 List<DocumentSnapshot> result = task.getResult().getDocuments();
@@ -97,37 +116,9 @@ public class FireBase implements IDAO {
                 }
                 cache.resetAllScore(scores);
             }
-        });*/
-
-        Query firstQuery = firestore.collection("score");
-        Query secondQuery = firestore.collection("users");
-
-        Task firstTask = firstQuery.get();
-        Task secondTask = secondQuery.get();
-
-        Task combinedTask = Tasks.whenAllSuccess(firstTask, secondTask).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
-            @Override
-            public void onSuccess(List<Object> list) {
-               for(Object o : list){
-                   Class<?> clazz = o.getClass();
-                   Field field = null;
-                   Field[] fields = clazz.getDeclaredFields();
-
-                   for(int i = 0; i< fields.length; i++){
-                       field = fields[i];
-                       System.out.println(field);
-                   }
-
-                  try {
-                       field = clazz.getField("com.google.firebase.firestore.QuerySnapshot.firestore");
-                   } catch (NoSuchFieldException e) {
-                       e.printStackTrace();
-                   }
-                   System.out.println("------------------------------------------------------------------------------------------");
-                   System.out.println(field);
-                   System.out.println("------------------------------------------------------------------------------------------");
-               }
-            }
         });
     }
+    */
+
+
 }

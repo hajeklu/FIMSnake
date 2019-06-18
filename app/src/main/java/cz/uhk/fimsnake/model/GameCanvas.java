@@ -140,7 +140,7 @@ public class GameCanvas {
     }
 
     public boolean saveScore(IDAO databaseHelper){
-        return databaseHelper.addScorePlayer(snake.getLenght(), Players.PLAYER1);
+        return databaseHelper.addScoreToPlayer(snake.getLenght(), Players.PLAYER1);
     }
 
     public Canvas getCanvas() {

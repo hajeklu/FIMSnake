@@ -51,7 +51,8 @@ public class DatabaseHelper extends SQLiteOpenHelper implements IDAO {
     }
 
     @Override
-    public boolean addScorePlayer(int data, Players player) {
+    public boolean addScoreToPlayer(int data) {
+        Players player = Players.PLAYER2;
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL1, data);

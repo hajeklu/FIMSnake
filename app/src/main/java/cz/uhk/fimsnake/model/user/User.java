@@ -1,22 +1,16 @@
 package cz.uhk.fimsnake.model.user;
 
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.EditTextPreference;
 import android.preference.PreferenceManager;
-import android.view.View;
-
-import cz.uhk.fimsnake.R;
-import cz.uhk.fimsnake.dbs.FireBase;
-import cz.uhk.fimsnake.dbs.IDAO;
+import java.util.List;
 
 public class User {
 
     private String macAddress;
     private String alias;
     private static User user;
+    private List<Score> scores;
 
     public User(String macAddress, String alias) {
         this.macAddress = macAddress;
@@ -64,5 +58,13 @@ public class User {
     @Override
     public int hashCode() {
         return alias.length() * macAddress.length();
+    }
+
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
     }
 }

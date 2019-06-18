@@ -9,7 +9,7 @@ import cz.uhk.fimsnake.model.user.User;
 
 public interface IDAO {
 
-    boolean addScorePlayer(int data, Players player);
+    boolean addScoreToPlayer(int value);
 
     void getData(OnCompleteListener listener);
 

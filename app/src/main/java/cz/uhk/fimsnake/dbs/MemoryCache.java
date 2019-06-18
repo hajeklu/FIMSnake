@@ -3,7 +3,7 @@ package cz.uhk.fimsnake.dbs;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.uhk.fimsnake.model.Score;
+import cz.uhk.fimsnake.model.user.Score;
 
 public class MemoryCache implements Cache {
 
