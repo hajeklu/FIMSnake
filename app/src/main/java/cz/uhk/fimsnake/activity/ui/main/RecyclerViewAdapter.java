@@ -42,7 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         viewHolder.date.setText(scores.get(i).getDate().toString());
         viewHolder.alias.setText(scores.get(i).getUserAlias());
-        viewHolder.score.setText(scores.get(i).getScore());
+        viewHolder.score.setText(scores.get(i).getScore()+"");
 
     }
 

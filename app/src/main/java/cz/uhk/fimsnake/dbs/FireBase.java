@@ -78,7 +78,6 @@ public class FireBase implements IDAO {
 
                                 int value = documentSnapshot.getLong("score").intValue();
                                 Date date = documentSnapshot.getDate("date");
-
                                 Score s = new Score();
                                 s.setUserAlias(alias);
                                 s.setScore(value);

@@ -25,12 +25,6 @@ public class TapScore extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        RecyclerView recyclerView = findViewById(R.id.my_recycler_view);
-        System.out.println(recyclerView);
-        Cache cache = MemoryCache.getInstance();
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext(), cache.getAllScore());
-        recyclerView.setAdapter(recyclerViewAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 }

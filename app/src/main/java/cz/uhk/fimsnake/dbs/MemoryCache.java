@@ -1,5 +1,7 @@
 package cz.uhk.fimsnake.dbs;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,10 +35,12 @@ public class MemoryCache implements Cache {
     @Override
     public void add(Score score) {
         scores.add(score);
+        Log.d("CACHE", "Added to cache size: " + scores.size());
     }
 
     @Override
     public void clear() {
+        Log.d("CACHE", "Cache clear");
         scores.clear();
     }
 }

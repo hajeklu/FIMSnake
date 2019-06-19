@@ -1,5 +1,7 @@
 package cz.uhk.fimsnake.model.user;
 
+import com.google.firebase.firestore.Exclude;
+
 import java.util.Date;
 
 import cz.uhk.fimsnake.model.user.User;
@@ -8,6 +10,8 @@ public class Score {
 
     private int score;
     private Date date;
+
+    @Exclude
     private String userAlias;
 
     public String getUserAlias() {
