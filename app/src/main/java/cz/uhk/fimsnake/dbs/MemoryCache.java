@@ -29,4 +29,14 @@ public class MemoryCache implements Cache {
     public void resetAllScore(List<Score> score) {
         this.scores = score;
     }
+
+    @Override
+    public void add(Score score) {
+        scores.add(score);
+    }
+
+    @Override
+    public void clear() {
+        scores.clear();
+    }
 }

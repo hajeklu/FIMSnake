@@ -3,6 +3,7 @@ package cz.uhk.fimsnake.model.user;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
 import java.util.List;
 
 public class User {
@@ -52,10 +53,5 @@ public class User {
     @Override
     public String toString() {
         return alias + " " + macAddress;
-    }
-
-    @Override
-    public int hashCode() {
-        return alias.length() * macAddress.length();
     }
 }

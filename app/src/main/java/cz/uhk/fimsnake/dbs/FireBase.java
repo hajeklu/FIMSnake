@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Nullable;
+
 import cz.uhk.fimsnake.model.user.NetworkService;
 import cz.uhk.fimsnake.model.user.Score;
 import cz.uhk.fimsnake.model.user.User;
@@ -63,16 +64,28 @@ public class FireBase implements IDAO {
     }
 
     @Override
-    public void setScoreToCache(Cache cache) {
+    public void setScoreToCache(final Cache cache) {
+        cache.clear();
         firestore.collection("snake_user").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()){
+                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                    final String alias = documentSnapshot.get("alias").toString();
                     documentSnapshot.getReference().collection("scores").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            System.out.println("******************************************************");
-                            System.out.println(task.getResult().getDocuments().size());
+                            for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+
+                                int value = documentSnapshot.getLong("score").intValue();
+                                Date date = documentSnapshot.getDate("date");
+
+                                Score s = new Score();
+                                s.setUserAlias(alias);
+                                s.setScore(value);
+                                s.setDate(date);
+
+                                cache.add(s);
+                            }
                         }
                     });
                 }
@@ -80,70 +93,4 @@ public class FireBase implements IDAO {
         });
 
     }
-/*
-    @Override
-    public boolean addScoreToPlayer(int data, Players player) {
-        Map<String, Object> put_data = new HashMap<>();
-        put_data.put("date", Calendar.getInstance().getTime());
-        put_data.put("value", data);
-        put_data.put("user_id", User.getUser().getMacAddress());
-        firestore.collection("score").add(put_data);
-        return true;
-    }
-
-    @Override
-    public void getData(OnCompleteListener listener) {
-        firestore.collection("score").get().addOnCompleteListener(listener);
-    }
-
-    @Override
-    public void setUser(String mac) {
-        firestore.collection("users").whereEqualTo("mac_address", mac).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                List<DocumentSnapshot> result = task.getResult().getDocuments();
-                if (result.size() > 0) {
-                    User u = new User();
-                    u.setAlias(result.get(0).get("alias").toString());
-                    u.setMacAddress(result.get(0).get("mac_address").toString());
-                    System.out.println(u);
-                    User.setUser(u, context);
-                }
-            }
-        });
-    }
-
-    @Override
-    public void addUser(User user) {
-        Map<String, Object> data = new HashMap<>();
-        data.put("alias", user.getAlias());
-        data.put("mac_address", user.getMacAddress());
-        firestore.collection("users").add(data);
-    }
-
-    @Override
-    public void setScoreToCache(final Cache cache) {
-        firestore.collection("score").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                List<DocumentSnapshot> result = task.getResult().getDocuments();
-                List<Score> scores = new ArrayList<>();
-                for (int i = 0; i<result.size();i++){
-                    DocumentSnapshot snapshot = result.get(i);
-                    Score s = new Score();
-                    Timestamp timestamp = (Timestamp) snapshot.get("date");
-                    s.setDate(timestamp.toDate());
-                    s.setScore(((Long) snapshot.get("value")).intValue());
-                    System.out.println(snapshot.get("user_id"));
-
-
-                    scores.add(s);
-                }
-                cache.resetAllScore(scores);
-            }
-        });
-    }
-    */
-
-
 }

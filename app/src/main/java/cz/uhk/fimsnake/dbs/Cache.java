@@ -9,4 +9,8 @@ public interface Cache {
     List<Score> getAllScore();
 
     void resetAllScore(List<Score> score);
+
+    void add(Score score);
+
+    void clear();
 }

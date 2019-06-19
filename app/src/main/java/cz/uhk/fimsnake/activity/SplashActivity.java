@@ -28,15 +28,6 @@ public class SplashActivity extends AppCompatActivity {
         IDAO idao = new FireBase(getApplicationContext());
         idao.setUser();
         idao.setScoreToCache(MemoryCache.getInstance());
-
-
-        User u = new User();
-        u.setAlias("Muj test user");
-        u.setMacAddress("03:00:00:00:00:00");
-     //   idao.addUser(u);
-     //   idao.addScoreToPlayer(40);
-
-        idao.setScoreToCache(MemoryCache.getInstance());
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

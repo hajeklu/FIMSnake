@@ -15,20 +15,17 @@ import java.util.Date;
 import java.util.List;
 
 import cz.uhk.fimsnake.R;
+import cz.uhk.fimsnake.model.user.Score;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "RecyclerViewAdapter";
     private Context context;
-    private List<Integer> scores = new ArrayList<>();
-    private List<Date> dates = new ArrayList<>();
-    private List<String> aliass = new ArrayList<>();
+    private List<Score> scores = new ArrayList<>();
 
-    public RecyclerViewAdapter(Context context, List<Integer> scores, List<Date> dates, List<String> aliass) {
+    public RecyclerViewAdapter(Context context, List<Score> scores) {
         this.context = context;
         this.scores = scores;
-        this.dates = dates;
-        this.aliass = aliass;
     }
 
     @NonNull
@@ -43,9 +40,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Log.d(TAG, "onBindViewHolder: called.");
 
-        viewHolder.date.setText(dates.get(i).toString());
-        viewHolder.alias.setText(aliass.get(i));
-        viewHolder.score.setText(scores.get(i).toString());
+        viewHolder.date.setText(scores.get(i).getDate().toString());
+        viewHolder.alias.setText(scores.get(i).getUserAlias());
+        viewHolder.score.setText(scores.get(i).getScore());
 
     }
 
