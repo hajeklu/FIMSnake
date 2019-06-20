@@ -1,4 +1,4 @@
-package cz.uhk.fimsnake.dbs;
+package cz.uhk.fimsnake.dao;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -12,7 +12,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -41,26 +40,38 @@ public class FireBase implements IDAO {
     }
 
     @Override
-    public void getData(OnCompleteListener listener) {
+    public void setUserScore(final Cache cache) {
+        firestore.collection("snake_user").document(mac).collection("scores").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                    int value = documentSnapshot.getLong("score").intValue();
+                    Date date = documentSnapshot.getDate("date");
+                    Score s = new Score();
+                    s.setScore(value);
+                    s.setDate(date);
+                    cache.addToCurrentUserScore(s);
+                }
+            }
+        });
     }
 
     @Override
-    public void setUser() {
+    public void setUser(final Cache cache) {
         firestore.collection("snake_user").document(mac).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 User u = new User();
                 u.setAlias(documentSnapshot.get("alias").toString());
                 u.setMacAddress(documentSnapshot.get("macAddress").toString());
-                System.out.println(u);
-                User.setUser(u, context);
+                cache.setUser(u, context);
             }
         });
     }
 
     @Override
     public void addUser(User user) {
-        firestore.collection("snake_user").document(user.getMacAddress()).set(user);
+        firestore.collection("snake_user").add(user);
     }
 
     @Override

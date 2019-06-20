@@ -6,7 +6,7 @@ import java.util.Date;
 
 import cz.uhk.fimsnake.model.user.User;
 
-public class Score {
+public class Score implements Comparable<Score> {
 
     private int score;
     private Date date;
@@ -44,5 +44,10 @@ public class Score {
                 "score=" + score +
                 ", date=" + date +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Score o) {
+        return o.getScore() - this.getScore();
     }
 }

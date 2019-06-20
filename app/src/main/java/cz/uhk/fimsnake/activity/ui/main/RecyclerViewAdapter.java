@@ -10,22 +10,32 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import cz.uhk.fimsnake.R;
+import cz.uhk.fimsnake.dao.Cache;
+import cz.uhk.fimsnake.dao.CacheFactory;
 import cz.uhk.fimsnake.model.user.Score;
+import cz.uhk.fimsnake.model.user.User;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "RecyclerViewAdapter";
     private Context context;
-    private List<Score> scores = new ArrayList<>();
+    private List<Score> scores;
+    private List<Score> scoresCurrentUser;
+    private int index = 0;
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm dd.MM.yyyy");
+    private Cache cache;
 
-    public RecyclerViewAdapter(Context context, List<Score> scores) {
+    public RecyclerViewAdapter(Context context) {
+        cache = CacheFactory.getInstance();
         this.context = context;
-        this.scores = scores;
+        this.scores = cache.getAllScore();
+        this.scoresCurrentUser = cache.getCurrentUserScore();
     }
 
     @NonNull
@@ -40,15 +50,67 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Log.d(TAG, "onBindViewHolder: called.");
 
-        viewHolder.date.setText(scores.get(i).getDate().toString());
-        viewHolder.alias.setText(scores.get(i).getUserAlias());
-        viewHolder.score.setText(scores.get(i).getScore()+"");
-
+        switch (index) {
+            case 1:
+                /*
+                 * My score
+                 */
+                viewHolder.date.setText(simpleDateFormat.format(scoresCurrentUser.get(i).getDate()));
+                viewHolder.alias.setText(cache.getUser().getAlias());
+                viewHolder.score.setText(scoresCurrentUser.get(i).getScore() + "");
+                break;
+            case 2:
+                /*
+                 * Best today
+                 */
+                viewHolder.date.setText("2");
+                viewHolder.alias.setText("2");
+                viewHolder.score.setText("2");
+                break;
+            case 3:
+                /*
+                 * TOP 100
+                 */
+                viewHolder.date.setText(simpleDateFormat.format(scores.get(i).getDate()));
+                viewHolder.alias.setText(scores.get(i).getUserAlias());
+                viewHolder.score.setText(scores.get(i).getScore() + "");
+                break;
+            case 4:
+                /*
+                 * My statistics
+                 */
+                viewHolder.date.setText("Played games: " + cache.getScoreCount());
+                viewHolder.alias.setText("Highest Record: " + cache.getBigestScoreCurrentUser());
+                viewHolder.score.setText("Average score: " + cache.getAverageScoreCurrentUser());
+                break;
+        }
     }
 
     @Override
     public int getItemCount() {
-        return scores.size();
+        switch (index) {
+            case 1:
+                /*
+                 * My score
+                 */
+                return scoresCurrentUser.size();
+            case 2:
+                /*
+                 * Best today
+                 */
+                return 2;
+            case 3:
+                /*
+                 * TOP 100
+                 */
+                return scores.size();
+            case 4:
+                /*
+                 * My statistics
+                 */
+                return 1;
+        }
+        return 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -64,5 +126,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             score = itemView.findViewById(R.id.score_item_data);
             date = itemView.findViewById(R.id.score_item_time);
         }
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }

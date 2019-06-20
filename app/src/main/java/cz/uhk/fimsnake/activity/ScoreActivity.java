@@ -2,16 +2,10 @@ package cz.uhk.fimsnake.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import java.util.List;
-
 import cz.uhk.fimsnake.R;
-import cz.uhk.fimsnake.dbs.IDAO;
-import cz.uhk.fimsnake.model.user.Players;
+import cz.uhk.fimsnake.dao.IDAO;
 
 public class ScoreActivity extends AppCompatActivity {
 

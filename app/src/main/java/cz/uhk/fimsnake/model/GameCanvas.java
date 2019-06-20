@@ -5,14 +5,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
-import java.util.Date;
 import java.util.Random;
 
-import cz.uhk.fimsnake.dbs.IDAO;
+import cz.uhk.fimsnake.dao.IDAO;
 import cz.uhk.fimsnake.model.tiles.BonusTile;
 import cz.uhk.fimsnake.model.tiles.Tile;
-import cz.uhk.fimsnake.model.user.Players;
-import cz.uhk.fimsnake.model.user.Score;
 import cz.uhk.fimsnake.view.GameView;
 
 public class GameCanvas {

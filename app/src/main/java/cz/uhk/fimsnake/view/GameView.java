@@ -10,8 +10,8 @@ import android.view.View;
 import java.util.Timer;
 
 import cz.uhk.fimsnake.R;
-import cz.uhk.fimsnake.dbs.FireBase;
-import cz.uhk.fimsnake.dbs.IDAO;
+import cz.uhk.fimsnake.dao.FireBase;
+import cz.uhk.fimsnake.dao.IDAO;
 import cz.uhk.fimsnake.model.GameCanvas;
 
 public class GameView extends View {
