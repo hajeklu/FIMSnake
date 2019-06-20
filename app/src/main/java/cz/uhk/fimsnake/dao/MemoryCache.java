@@ -41,6 +41,9 @@ public class MemoryCache implements Cache {
 
     @Override
     public List<Score> getCurrentUserScore() {
+        Score.sortHelper = false;
+        Collections.sort(curretnUserScores);
+        Score.sortHelper = true;
         return curretnUserScores;
     }
 
@@ -54,6 +57,7 @@ public class MemoryCache implements Cache {
     public void clear() {
         Log.d("CACHE", "Cache clear");
         scores.clear();
+        curretnUserScores.clear();
     }
 
     @Override
@@ -71,7 +75,7 @@ public class MemoryCache implements Cache {
     }
 
     @Override
-    public int getBigestScoreCurrentUser() {
+    public int getBiggestScoreCurrentUser() {
         List<Score> s1 = new ArrayList<>(curretnUserScores);
         Collections.sort(s1);
         return s1.get(0).getScore();
@@ -91,5 +95,14 @@ public class MemoryCache implements Cache {
         editor.putString("pref_mac", user.getAlias());
         editor.commit();
         Log.d("CACHE", "user set: " + user);
+    }
+
+    @Override
+    public List<Score> getScoreOrderbyDate() {
+        Score.sortHelper = false;
+        List<Score> s1 = new ArrayList<>(scores);
+        Collections.sort(s1);
+        Score.sortHelper = true;
+        return s1;
     }
 }

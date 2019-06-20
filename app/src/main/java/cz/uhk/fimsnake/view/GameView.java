@@ -10,8 +10,9 @@ import android.view.View;
 import java.util.Timer;
 
 import cz.uhk.fimsnake.R;
-import cz.uhk.fimsnake.dao.FireBase;
+import cz.uhk.fimsnake.dao.CacheFactory;
 import cz.uhk.fimsnake.dao.IDAO;
+import cz.uhk.fimsnake.dao.DAOFactory;
 import cz.uhk.fimsnake.model.GameCanvas;
 
 public class GameView extends View {
@@ -21,7 +22,7 @@ public class GameView extends View {
     private Timer timer;
     private int speed = 130;
     private GameCanvas gameCanvas;
-    private IDAO databaseHelper;
+    private IDAO idao;
 
     private static boolean gameRun = true;
     public static View gameContext;
@@ -45,7 +46,7 @@ public class GameView extends View {
 
         t.start();
 
-        databaseHelper = new FireBase(context);
+        idao = DAOFactory.getDAO(context);
         gameContext = this;
     }
 
@@ -65,7 +66,7 @@ public class GameView extends View {
 
     public void gameOver() {
 
-        gameCanvas.saveScore(databaseHelper);
+        gameCanvas.saveScore(idao);
         gameRun = false;
     }
 

@@ -25,7 +25,7 @@ public class FireBase implements IDAO {
     private Context context;
     private String mac;
 
-    public FireBase(Context context) {
+    protected FireBase(Context context) {
         this.context = context;
         this.mac = NetworkService.getInstance().getMacAddress(context);
     }
@@ -76,7 +76,6 @@ public class FireBase implements IDAO {
 
     @Override
     public void setScoreToCache(final Cache cache) {
-        cache.clear();
         firestore.collection("snake_user").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -102,5 +101,13 @@ public class FireBase implements IDAO {
             }
         });
 
+    }
+
+    @Override
+    public void invalidAndRestartCache(Context context) {
+        Cache cache = CacheFactory.getInstance();
+        cache.clear();
+        setScoreToCache(cache);
+        setUserScore(cache);
     }
 }

@@ -10,6 +10,7 @@ public class Score implements Comparable<Score> {
 
     private int score;
     private Date date;
+    public static boolean sortHelper = true; //true - sort by score,  false - sort by date
 
     @Exclude
     private String userAlias;
@@ -48,6 +49,6 @@ public class Score implements Comparable<Score> {
 
     @Override
     public int compareTo(Score o) {
-        return o.getScore() - this.getScore();
+        return sortHelper ? o.getScore() - this.getScore() : o.getDate().compareTo(date);
     }
 }

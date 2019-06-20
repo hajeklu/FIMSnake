@@ -25,9 +25,11 @@ public interface Cache {
 
     int getScoreCount();
 
-    int getBigestScoreCurrentUser();
+    int getBiggestScoreCurrentUser();
 
     User getUser();
 
     void setUser(User user, Context context);
+
+    List<Score> getScoreOrderbyDate();
 }

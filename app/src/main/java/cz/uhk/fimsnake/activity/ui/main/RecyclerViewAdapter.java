@@ -11,15 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import cz.uhk.fimsnake.R;
 import cz.uhk.fimsnake.dao.Cache;
 import cz.uhk.fimsnake.dao.CacheFactory;
 import cz.uhk.fimsnake.model.user.Score;
-import cz.uhk.fimsnake.model.user.User;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
@@ -30,12 +27,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private int index = 0;
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm dd.MM.yyyy");
     private Cache cache;
+    private List<Score> scoreOrderbyDate;
 
     public RecyclerViewAdapter(Context context) {
         cache = CacheFactory.getInstance();
         this.context = context;
         this.scores = cache.getAllScore();
         this.scoresCurrentUser = cache.getCurrentUserScore();
+        this.scoreOrderbyDate = cache.getScoreOrderbyDate();
     }
 
     @NonNull
@@ -63,9 +62,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 /*
                  * Best today
                  */
-                viewHolder.date.setText("2");
-                viewHolder.alias.setText("2");
-                viewHolder.score.setText("2");
+                viewHolder.date.setText(simpleDateFormat.format(scoreOrderbyDate.get(i).getDate()));
+                viewHolder.alias.setText(scoreOrderbyDate.get(i).getUserAlias());
+                viewHolder.score.setText(scoreOrderbyDate.get(i).getScore() + "");
                 break;
             case 3:
                 /*
@@ -80,7 +79,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                  * My statistics
                  */
                 viewHolder.date.setText("Played games: " + cache.getScoreCount());
-                viewHolder.alias.setText("Highest Record: " + cache.getBigestScoreCurrentUser());
+                viewHolder.alias.setText("Highest Record: " + cache.getBiggestScoreCurrentUser());
                 viewHolder.score.setText("Average score: " + cache.getAverageScoreCurrentUser());
                 break;
         }
@@ -98,7 +97,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 /*
                  * Best today
                  */
-                return 2;
+                return scoreOrderbyDate.size();
             case 3:
                 /*
                  * TOP 100

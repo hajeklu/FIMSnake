@@ -104,7 +104,7 @@
     <string name="score_title">SCORE</string>
     <string name="title_activity_tap_score">tap_score</string>
     <string name="tab_text_1_myScore">My score</string>
-    <string name="tab_text_2_dayBest">Best today</string>
+    <string name="tab_text_2_dayBest">Last played games</string>
     <string name="tab_text_3_first100">TOP 100</string>
     <string name="tab_text_4_myStatistic">My Statistics</string>
 

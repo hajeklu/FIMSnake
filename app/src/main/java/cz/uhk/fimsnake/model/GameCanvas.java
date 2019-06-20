@@ -79,7 +79,7 @@ public class GameCanvas {
         wallWalk(uiSnake.getHead());
 
 
-        if(snake.isCollison(uiSnake) || uiSnake.isCollison(snake)) {
+        if (snake.isCollison(uiSnake) || uiSnake.isCollison(snake)) {
             gameView.gameOver();
         }
 
@@ -138,8 +138,10 @@ public class GameCanvas {
         bonus = new BonusTile(x, y);
     }
 
-    public boolean saveScore(IDAO databaseHelper){
-        return databaseHelper.addScoreToPlayer(snake.lenght);
+    public boolean saveScore(IDAO databaseHelper) {
+        boolean result = databaseHelper.addScoreToPlayer(snake.lenght);
+        databaseHelper.invalidAndRestartCache(gameView.getContext());
+        return result;
     }
 
     public Canvas getCanvas() {

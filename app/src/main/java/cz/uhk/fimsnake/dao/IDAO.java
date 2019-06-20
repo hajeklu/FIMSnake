@@ -1,5 +1,7 @@
 package cz.uhk.fimsnake.dao;
 
+import android.content.Context;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 
 import cz.uhk.fimsnake.model.user.User;
@@ -15,4 +17,6 @@ public interface IDAO {
     void addUser(User user);
 
     void setScoreToCache(Cache cache);
+
+    void invalidAndRestartCache(Context context);
 }
