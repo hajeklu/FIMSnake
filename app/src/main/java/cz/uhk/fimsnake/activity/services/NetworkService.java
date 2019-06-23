@@ -1,12 +1,10 @@
-package cz.uhk.fimsnake.model.user;
+package cz.uhk.fimsnake.activity.services;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-
-import static android.support.v4.content.ContextCompat.getSystemService;
 
 
 public class NetworkService {
