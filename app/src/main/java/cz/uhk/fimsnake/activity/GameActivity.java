@@ -13,6 +13,8 @@ import cz.uhk.fimsnake.view.GameView;
 
 public class GameActivity extends AppCompatActivity {
 
+    private GameView gameView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,13 @@ public class GameActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(new GameView(this));
+        gameView = new GameView(this);
+        setContentView(gameView);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        gameView.gameOver();
     }
 }

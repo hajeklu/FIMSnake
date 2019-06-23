@@ -107,6 +107,8 @@
     <string name="tab_text_2_dayBest">Last played games</string>
     <string name="tab_text_3_first100">TOP 100</string>
     <string name="tab_text_4_myStatistic">My Statistics</string>
+    <string name="pref_sync">synchronize</string>
+
 
 
 

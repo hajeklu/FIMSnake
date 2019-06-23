@@ -1,15 +1,18 @@
 package cz.uhk.fimsnake.model;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.widget.Toast;
 
 import java.util.Random;
 
 import cz.uhk.fimsnake.dao.IDAO;
 import cz.uhk.fimsnake.model.tiles.BonusTile;
 import cz.uhk.fimsnake.model.tiles.Tile;
+import cz.uhk.fimsnake.model.user.NetworkService;
 import cz.uhk.fimsnake.view.GameView;
 
 public class GameCanvas {
@@ -79,7 +82,12 @@ public class GameCanvas {
         wallWalk(uiSnake.getHead());
 
 
-        if (snake.isCollison(uiSnake) || uiSnake.isCollison(snake)) {
+        if (snake.isCollison(uiSnake)) {
+            System.out.println("Snake");
+            gameView.gameOver();
+        }
+        if(uiSnake.isCollison(snake)){
+            System.out.println("uiSnake");
             gameView.gameOver();
         }
 
@@ -96,19 +104,12 @@ public class GameCanvas {
 
     public void drawScene() {
         paint.setColor(Color.BLACK);
-        //paint.setStyle(Paint.Style.STROKE);
         canvas.drawRect(wbezels, hbezels, width + wbezels, height + hbezels, paint);
 
         bonus.draw(canvas);
         snake.draw(canvas);
 
         uiSnake.draw(canvas);
-        //drawText();
-    }
-
-    private void drawText() {
-        paint.setColor(Color.WHITE);
-        canvas.drawText("Score: " + snake.getLenght(), width - 30, 20, paint);
     }
 
     private void wallWalk(Tile head) {
@@ -139,9 +140,15 @@ public class GameCanvas {
     }
 
     public boolean saveScore(IDAO databaseHelper) {
-        boolean result = databaseHelper.addScoreToPlayer(snake.lenght);
-        databaseHelper.invalidAndRestartCache(gameView.getContext());
-        return result;
+        Context context = gameView.getContext();
+        if (NetworkService.getInstance().isInternetAvailable(context)) {
+            boolean result = databaseHelper.addScoreToPlayer(snake.lenght);
+            databaseHelper.invalidAndRestartCache(context);
+            return result;
+        } else {
+            Toast.makeText(context, "Score can not by save, because internet connection is not available.", Toast.LENGTH_SHORT);
+            return false;
+        }
     }
 
     public Canvas getCanvas() {

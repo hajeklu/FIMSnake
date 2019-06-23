@@ -27,4 +27,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="PreferenceTheme" parent="@style/MyTheme">
+        <item name="android:colorBackground">@color/colorPrimary</item>
+    </style>
+
 </resources>
