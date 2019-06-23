@@ -10,7 +10,7 @@ import cz.uhk.fimsnake.R;
 import cz.uhk.fimsnake.dao.CacheFactory;
 import cz.uhk.fimsnake.dao.IDAO;
 import cz.uhk.fimsnake.dao.DAOFactory;
-import cz.uhk.fimsnake.model.user.NetworkService;
+import cz.uhk.fimsnake.activity.services.NetworkService;
 
 public class SplashActivity extends AppCompatActivity {
 

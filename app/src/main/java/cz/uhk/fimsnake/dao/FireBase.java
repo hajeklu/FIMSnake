@@ -16,7 +16,7 @@ import java.util.Date;
 
 import javax.annotation.Nullable;
 
-import cz.uhk.fimsnake.model.user.NetworkService;
+import cz.uhk.fimsnake.activity.services.NetworkService;
 import cz.uhk.fimsnake.model.user.Score;
 import cz.uhk.fimsnake.model.user.User;
 

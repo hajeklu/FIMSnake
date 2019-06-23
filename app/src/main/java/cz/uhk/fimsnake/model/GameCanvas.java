@@ -5,14 +5,14 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.widget.Toast;
 
 import java.util.Random;
 
+import cz.uhk.fimsnake.activity.services.NotifiService;
 import cz.uhk.fimsnake.dao.IDAO;
 import cz.uhk.fimsnake.model.tiles.BonusTile;
 import cz.uhk.fimsnake.model.tiles.Tile;
-import cz.uhk.fimsnake.model.user.NetworkService;
+import cz.uhk.fimsnake.activity.services.NetworkService;
 import cz.uhk.fimsnake.view.GameView;
 
 public class GameCanvas {
@@ -86,7 +86,7 @@ public class GameCanvas {
             System.out.println("Snake");
             gameView.gameOver();
         }
-        if(uiSnake.isCollison(snake)){
+        if (uiSnake.isCollison(snake)) {
             System.out.println("uiSnake");
             gameView.gameOver();
         }
@@ -144,6 +144,7 @@ public class GameCanvas {
         if (NetworkService.getInstance().isInternetAvailable(context)) {
             boolean result = databaseHelper.addScoreToPlayer(snake.lenght);
             databaseHelper.invalidAndRestartCache(context);
+            NotifiService.createNotificationNewRecord(context);
             return result;
         } else {
             return false;
