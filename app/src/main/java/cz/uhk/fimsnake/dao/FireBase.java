@@ -2,6 +2,7 @@ package cz.uhk.fimsnake.dao;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -62,8 +63,15 @@ public class FireBase implements IDAO {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 User u = new User();
-                u.setAlias(documentSnapshot.get("alias").toString());
-                u.setMacAddress(documentSnapshot.get("macAddress").toString());
+                Object alias = documentSnapshot.get("alias");
+                Object userMac = documentSnapshot.get("macAddress");
+                if (alias != null && userMac != null) {
+                    u.setAlias(alias.toString());
+                    u.setMacAddress(userMac.toString());
+                } else {
+                    u.setAlias(NetworkService.getInstance().getMacAddress(context));
+                    u.setMacAddress(NetworkService.getInstance().getMacAddress(context));
+                }
                 cache.setUser(u, context);
             }
         });
@@ -109,5 +117,15 @@ public class FireBase implements IDAO {
         cache.clear();
         setScoreToCache(cache);
         setUserScore(cache);
+    }
+
+    @Override
+    public void setNewAliasToCurrentUser(String alias) {
+        firestore.collection("snake_user").document(mac).update("alias", alias).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(context, "Alias was updated.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

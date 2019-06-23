@@ -19,4 +19,6 @@ public interface IDAO {
     void setScoreToCache(Cache cache);
 
     void invalidAndRestartCache(Context context);
+
+    void setNewAliasToCurrentUser(String alias);
 }

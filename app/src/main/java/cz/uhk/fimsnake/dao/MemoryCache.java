@@ -91,8 +91,8 @@ public class MemoryCache implements Cache {
         this.user = user;
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("pref_alias", user.getMacAddress());
-        editor.putString("pref_mac", user.getAlias());
+        editor.putString("pref_alias", user.getAlias());
+        editor.putString("pref_mac", user.getMacAddress());
         editor.commit();
         Log.d("CACHE", "user set: " + user);
     }

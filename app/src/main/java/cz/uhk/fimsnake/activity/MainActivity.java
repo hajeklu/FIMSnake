@@ -1,8 +1,6 @@
 package cz.uhk.fimsnake.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +16,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
 import cz.uhk.fimsnake.R;
+import cz.uhk.fimsnake.dao.CacheFactory;
 import cz.uhk.fimsnake.model.user.NetworkService;
 import cz.uhk.fimsnake.model.user.User;
 
@@ -67,9 +66,12 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("TAG", "The interstitial wasn't loaded yet.");
                 }
 
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(intent);
-
+                if(NetworkService.getInstance().isInternetAvailable(getApplicationContext())) {
+                    Intent intent = new Intent(MainActivity.this, PreferencesActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getApplicationContext(),"Internet connection needed.", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -87,5 +89,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        User user = CacheFactory.getInstance().getUser();
+        if(user == null || user.getMacAddress().equals(user.getAlias())){
+            Intent intent = new Intent(MainActivity.this, PopupActivity.class);
+            startActivity(intent);
+        }
     }
 }
