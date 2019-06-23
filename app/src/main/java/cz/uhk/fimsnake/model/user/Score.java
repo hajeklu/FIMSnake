@@ -1,11 +1,13 @@
 package cz.uhk.fimsnake.model.user;
 
 import com.google.firebase.firestore.Exclude;
+import com.google.firebase.firestore.IgnoreExtraProperties;
 
 import java.util.Date;
 
 import cz.uhk.fimsnake.model.user.User;
 
+@IgnoreExtraProperties
 public class Score implements Comparable<Score> {
 
     private int score;

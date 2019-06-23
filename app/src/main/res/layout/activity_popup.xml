@@ -23,7 +23,7 @@
 
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/popup_alias"
         android:layout_width="match_parent"
         android:textSize="@dimen/pref_text_size_big"
         android:gravity="center"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/popup_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="50dp"

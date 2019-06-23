@@ -146,7 +146,6 @@ public class GameCanvas {
             databaseHelper.invalidAndRestartCache(context);
             return result;
         } else {
-            Toast.makeText(context, "Score can not by save, because internet connection is not available.", Toast.LENGTH_SHORT);
             return false;
         }
     }

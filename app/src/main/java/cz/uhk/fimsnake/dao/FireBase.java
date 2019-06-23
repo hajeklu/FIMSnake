@@ -79,7 +79,7 @@ public class FireBase implements IDAO {
 
     @Override
     public void addUser(User user) {
-        firestore.collection("snake_user").add(user);
+        firestore.collection("snake_user").document(mac).set(user);
     }
 
     @Override

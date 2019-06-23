@@ -1,19 +1,13 @@
 package cz.uhk.fimsnake.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-
 import java.util.Timer;
-
 import cz.uhk.fimsnake.R;
-import cz.uhk.fimsnake.dao.CacheFactory;
 import cz.uhk.fimsnake.dao.IDAO;
 import cz.uhk.fimsnake.dao.DAOFactory;
 import cz.uhk.fimsnake.model.GameCanvas;
