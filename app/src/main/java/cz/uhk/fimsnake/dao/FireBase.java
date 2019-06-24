@@ -20,6 +20,9 @@ import cz.uhk.fimsnake.activity.services.NetworkService;
 import cz.uhk.fimsnake.model.user.Score;
 import cz.uhk.fimsnake.model.user.User;
 
+/**
+ * Created by Luboš Hájek in 2019
+ */
 public class FireBase implements IDAO {
 
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();

@@ -7,6 +7,9 @@ import java.util.List;
 import cz.uhk.fimsnake.model.user.Score;
 import cz.uhk.fimsnake.model.user.User;
 
+/**
+ * Created by Luboš Hájek in 2019
+ */
 public interface Cache {
 
     List<Score> getAllScore();
@@ -32,4 +35,6 @@ public interface Cache {
     void setUser(User user, Context context);
 
     List<Score> getScoreOrderbyDate();
+
+    boolean isNewRecord(int value);
 }

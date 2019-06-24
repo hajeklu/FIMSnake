@@ -1,17 +1,25 @@
 package cz.uhk.fimsnake.activity;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import cz.uhk.fimsnake.R;
-import cz.uhk.fimsnake.dao.CacheFactory;
-import cz.uhk.fimsnake.dao.IDAO;
-import cz.uhk.fimsnake.dao.DAOFactory;
-import cz.uhk.fimsnake.activity.services.NetworkService;
+import java.util.prefs.Preferences;
 
+import cz.uhk.fimsnake.R;
+import cz.uhk.fimsnake.activity.services.NetworkService;
+import cz.uhk.fimsnake.activity.services.PreferencesService;
+import cz.uhk.fimsnake.dao.CacheFactory;
+import cz.uhk.fimsnake.dao.DAOFactory;
+import cz.uhk.fimsnake.dao.IDAO;
+
+/**
+ * Created by Luboš Hájek in 2019
+ */
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -24,6 +32,9 @@ public class SplashActivity extends AppCompatActivity {
         idao.setUser(CacheFactory.getInstance());
         idao.setScoreToCache(CacheFactory.getInstance());
         idao.setUserScore(CacheFactory.getInstance());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        PreferencesService.setTextures(sharedPreferences.getBoolean(PreferencesActivity.PRE_TEXTURES, PreferencesActivity.TEXTURES_DEFAULT));
+
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

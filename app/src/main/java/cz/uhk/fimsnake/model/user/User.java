@@ -1,11 +1,5 @@
 package cz.uhk.fimsnake.model.user;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
-import java.util.List;
-
 public class User {
 
     private String macAddress;

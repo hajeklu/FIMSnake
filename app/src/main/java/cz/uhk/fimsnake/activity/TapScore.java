@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import cz.uhk.fimsnake.R;
 import cz.uhk.fimsnake.activity.ui.main.SectionsPagerAdapter;
 
+/**
+ * Created by Luboš Hájek in 2019
+ */
 public class TapScore extends AppCompatActivity {
 
     @Override

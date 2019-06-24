@@ -18,6 +18,9 @@ import cz.uhk.fimsnake.dao.Cache;
 import cz.uhk.fimsnake.dao.CacheFactory;
 import cz.uhk.fimsnake.model.user.Score;
 
+/**
+ * Created by Luboš Hájek in 2019
+ */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "RecyclerViewAdapter";

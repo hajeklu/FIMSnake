@@ -1,16 +1,17 @@
 package cz.uhk.fimsnake.activity;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import cz.uhk.fimsnake.view.GameView;
 
+/**
+ * Created by Luboš Hájek in 2019
+ */
 public class GameActivity extends AppCompatActivity {
 
     private GameView gameView;
@@ -29,7 +30,11 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         gameView.gameOver();
+        gameView.restart();
+        gameView.getT().interrupt();
+        finish();
     }
 }

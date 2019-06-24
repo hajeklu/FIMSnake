@@ -1,12 +1,7 @@
 package cz.uhk.fimsnake.model.tiles;
 
-import android.app.Application;
-import android.content.res.Resources;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-
-import java.sql.SQLOutput;
 
 /**
  * 
@@ -29,8 +24,6 @@ public abstract class Tile implements InterfaceTile {
 	// equals for collision
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == this)
-			return true;
 		if (obj instanceof Tile) {
 			Tile t = (Tile) obj;
 			if (t.x == x && t.y == y) {

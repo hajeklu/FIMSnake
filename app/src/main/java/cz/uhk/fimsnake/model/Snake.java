@@ -34,6 +34,7 @@ public class Snake {
     public boolean isCollison(Snake snake) {
         for (Tile tile : snake.getSnakeTiles()) {
             if (head.equals(tile)) {
+                System.out.println("Colision");
                 return true;
             }
         }

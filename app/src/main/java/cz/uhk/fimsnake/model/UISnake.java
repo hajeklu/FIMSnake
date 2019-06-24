@@ -2,6 +2,7 @@ package cz.uhk.fimsnake.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import cz.uhk.fimsnake.model.tiles.BodyTile;
 import cz.uhk.fimsnake.model.tiles.BonusTile;
 import cz.uhk.fimsnake.model.tiles.HeadTile;

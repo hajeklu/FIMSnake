@@ -1,8 +1,8 @@
 package cz.uhk.fimsnake.dao;
 
-import cz.uhk.fimsnake.dao.Cache;
-import cz.uhk.fimsnake.dao.MemoryCache;
-
+/**
+ * Created by Luboš Hájek in 2019
+ */
 public class CacheFactory {
 
     private static MemoryCache memoryCache;

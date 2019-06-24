@@ -6,10 +6,12 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
+
 import java.util.Timer;
+
 import cz.uhk.fimsnake.R;
-import cz.uhk.fimsnake.dao.IDAO;
 import cz.uhk.fimsnake.dao.DAOFactory;
+import cz.uhk.fimsnake.dao.IDAO;
 import cz.uhk.fimsnake.model.GameCanvas;
 
 public class GameView extends View {
@@ -20,13 +22,14 @@ public class GameView extends View {
     private int speed = 130;
     private GameCanvas gameCanvas;
     private IDAO idao;
-
+    private Thread t;
     private static boolean gameRun = true;
     public static View gameContext;
 
+
     public GameView(Context context) {
         super(context);
-        Thread t = new Thread() {
+        t = new Thread() {
 
             @Override
             public void run() {
@@ -42,7 +45,6 @@ public class GameView extends View {
         };
 
         t.start();
-
         idao = DAOFactory.getDAO(context);
         gameContext = this;
     }
@@ -71,8 +73,7 @@ public class GameView extends View {
     public boolean onTouchEvent(MotionEvent event) {
 
         if (!gameRun) {
-            gameRun = true;
-            gameCanvas.restart();
+            restart();
         }
 
         int mid = gameCanvas.getWidth() / 2;
@@ -84,4 +85,22 @@ public class GameView extends View {
 
         return super.onTouchEvent(event);
     }
+
+
+
+
+    public void restart() {
+        gameRun = true;
+        gameCanvas.restart();
+    }
+
+
+    public Thread getT() {
+        return t;
+    }
+
+    public void setT(Thread t) {
+        this.t = t;
+    }
+
 }

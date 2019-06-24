@@ -2,10 +2,11 @@ package cz.uhk.fimsnake.dao;
 
 import android.content.Context;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-
 import cz.uhk.fimsnake.model.user.User;
 
+/**
+ * Created by Luboš Hájek in 2019
+ */
 public interface IDAO {
 
     boolean addScoreToPlayer(int value);
@@ -21,4 +22,5 @@ public interface IDAO {
     void invalidAndRestartCache(Context context);
 
     void setNewAliasToCurrentUser(String alias);
+
 }

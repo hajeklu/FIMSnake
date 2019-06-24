@@ -1,19 +1,22 @@
 package cz.uhk.fimsnake.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import cz.uhk.fimsnake.R;
+import cz.uhk.fimsnake.activity.services.NetworkService;
 import cz.uhk.fimsnake.dao.CacheFactory;
 import cz.uhk.fimsnake.dao.DAOFactory;
 import cz.uhk.fimsnake.dao.IDAO;
-import cz.uhk.fimsnake.activity.services.NetworkService;
 import cz.uhk.fimsnake.model.user.User;
 
+/**
+ * Created by Luboš Hájek in 2019
+ */
 public class PopupActivity extends AppCompatActivity {
 
     private IDAO idao;

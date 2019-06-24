@@ -2,10 +2,9 @@ package cz.uhk.fimsnake.model.tiles;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 
 import cz.uhk.fimsnake.R;
+import cz.uhk.fimsnake.activity.services.PreferencesService;
 import cz.uhk.fimsnake.model.Direction;
 import cz.uhk.fimsnake.model.GameCanvas;
 import cz.uhk.fimsnake.model.Snake;
@@ -19,7 +18,7 @@ public class HeadTile extends Tile {
 
     private Direction direction;
     private Snake snake;
-    private Drawable drawableDown;
+    private boolean textures;
 
     public HeadTile(int x, int y, Direction direction, Snake snake) {
         super(x, y);
@@ -41,16 +40,19 @@ public class HeadTile extends Tile {
                 break;
         }
         drawable.setBounds(x, y, x + GameCanvas.TILESIZE, y + GameCanvas.TILESIZE);
+
+        textures = PreferencesService.isTextures();
+
     }
 
     @Override
     public void draw(Canvas g) {
-        // texture or fillRect
-        //  g.drawRect(x, y, x + GameCanvas.TILESIZE, y + GameCanvas.TILESIZE, paint);
-        // copy code for fast run and better read code
-
-        // texture by direction to rotate head
-        drawable.draw(g);
+        if (textures) {
+            drawable.draw(g);
+        } else {
+            paint.setColor(Color.RED);
+            g.drawRect(x, y, x + GameCanvas.TILESIZE, y + GameCanvas.TILESIZE, paint);
+        }
     }
 
 

@@ -98,28 +98,23 @@ android:layout_height="wrap_content"
         android:background="@color/colorPrimaryLightTransparent"
         >
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/pref_text_textures"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
-            android:text="@string/pref_title_mac"
+            android:text="@string/pref_title_textures"
             android:textSize="@dimen/pref_text_size_big"
             android:gravity="center"
             />
 
-        <TextView
-            android:id="@+id/mac"
-            android:textColor="@color/grey"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginEnd="10dp"
-            android:text="@string/pref_default_display_name"
+        <Switch
+            android:id="@+id/pref_switch_textures"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="right"
-            android:textSize="@dimen/pref_text_size_small"
-            android:textAlignment="gravity"
-            android:layout_weight="1"
-            />
+            android:layout_marginRight="10dp"
+            android:textAlignment="gravity"/>
     </LinearLayout>
     
 </LinearLayout>

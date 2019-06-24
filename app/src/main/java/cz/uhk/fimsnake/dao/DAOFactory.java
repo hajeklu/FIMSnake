@@ -2,6 +2,9 @@ package cz.uhk.fimsnake.dao;
 
 import android.content.Context;
 
+/**
+ * Created by Luboš Hájek in 2019
+ */
 public class DAOFactory {
 
     private static IDAO idao;

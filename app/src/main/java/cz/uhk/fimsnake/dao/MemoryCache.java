@@ -12,6 +12,9 @@ import java.util.List;
 import cz.uhk.fimsnake.model.user.Score;
 import cz.uhk.fimsnake.model.user.User;
 
+/**
+ * Created by Luboš Hájek in 2019
+ */
 public class MemoryCache implements Cache {
 
     private List<Score> scores = new ArrayList<>();
@@ -36,7 +39,6 @@ public class MemoryCache implements Cache {
     @Override
     public void add(Score score) {
         scores.add(score);
-        Log.d("CACHE", "Added to cache size: " + scores.size());
     }
 
     @Override
@@ -104,5 +106,15 @@ public class MemoryCache implements Cache {
         Collections.sort(s1);
         Score.sortHelper = true;
         return s1;
+    }
+
+    @Override
+    public boolean isNewRecord(int value) {
+        for (Score score : curretnUserScores) {
+            if (value < score.getScore()) {
+                return false;
+            }
+        }
+        return true;
     }
 }

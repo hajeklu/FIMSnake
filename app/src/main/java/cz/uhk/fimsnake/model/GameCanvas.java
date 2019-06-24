@@ -8,11 +8,12 @@ import android.graphics.Typeface;
 
 import java.util.Random;
 
+import cz.uhk.fimsnake.activity.services.NetworkService;
 import cz.uhk.fimsnake.activity.services.NotifiService;
+import cz.uhk.fimsnake.dao.CacheFactory;
 import cz.uhk.fimsnake.dao.IDAO;
 import cz.uhk.fimsnake.model.tiles.BonusTile;
 import cz.uhk.fimsnake.model.tiles.Tile;
-import cz.uhk.fimsnake.activity.services.NetworkService;
 import cz.uhk.fimsnake.view.GameView;
 
 public class GameCanvas {
@@ -72,6 +73,7 @@ public class GameCanvas {
     }
 
     public void restart() {
+        System.out.println("******************************Restart****************************");
         gameCanvas = new GameCanvas(canvas, gameView);
     }
 
@@ -83,11 +85,19 @@ public class GameCanvas {
 
 
         if (snake.isCollison(uiSnake)) {
-            System.out.println("Snake");
             gameView.gameOver();
+
+            System.out.println("HEAD: " + snake.getHead().getX() + ",  " + snake.getHead().getY());
+            for (Tile tile : snake.getSnakeTiles()) {
+                System.out.println("Snake tile: x " + tile.getX() + " y " + tile.getY());
+            }
+
+            for (Tile tile : uiSnake.getSnakeTiles()) {
+                System.out.println("uiSnake tile: x " + tile.getX() + " y " + tile.getY());
+            }
+
         }
         if (uiSnake.isCollison(snake)) {
-            System.out.println("uiSnake");
             gameView.gameOver();
         }
 
@@ -143,8 +153,10 @@ public class GameCanvas {
         Context context = gameView.getContext();
         if (NetworkService.getInstance().isInternetAvailable(context)) {
             boolean result = databaseHelper.addScoreToPlayer(snake.lenght);
+            if (CacheFactory.getInstance().isNewRecord(snake.lenght)) {
+                NotifiService.createNotificationNewRecord(context);
+            }
             databaseHelper.invalidAndRestartCache(context);
-            NotifiService.createNotificationNewRecord(context);
             return result;
         } else {
             return false;
