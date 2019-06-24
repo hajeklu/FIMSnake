@@ -28,7 +28,9 @@ public class PreferencesActivity extends AppCompatActivity {
     private Cache cache;
     private Context context;
     public final static String PRE_TEXTURES = "TEXTURES";
+    public final static String PRE_NOTIFICATION = "NOTIFICATION";
     public final static boolean TEXTURES_DEFAULT = true;
+    public final static boolean NOTIFICATION_DEFAULT = true;
 
 
     @Override
@@ -63,12 +65,26 @@ public class PreferencesActivity extends AppCompatActivity {
 
         PreferencesService.setTextures(sharedPreferences.getBoolean(PreferencesActivity.PRE_TEXTURES, PreferencesActivity.TEXTURES_DEFAULT));
 
+
         textures.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean(PRE_TEXTURES, isChecked);
                 PreferencesService.setTextures(isChecked);
+                editor.commit();
+            }
+        });
+
+
+        Switch notification = findViewById(R.id.pref_switch_notification);
+
+        notification.setChecked(sharedPreferences.getBoolean(PRE_NOTIFICATION, NOTIFICATION_DEFAULT));
+        notification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(PRE_NOTIFICATION, isChecked);
                 editor.commit();
             }
         });
