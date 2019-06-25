@@ -14,11 +14,9 @@ import cz.uhk.fimsnake.view.GameView;
  */
 public class FullBodyTile extends Tile {
 
-    private Snake snake;
     private boolean textures;
 
     public FullBodyTile(int x, int y, Snake snake) {
-        this.snake = snake;
         this.x = x;
         this.y = y;
         paint.setColor(Color.YELLOW);

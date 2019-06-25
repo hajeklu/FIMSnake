@@ -1,5 +1,8 @@
 package cz.uhk.fimsnake.model.user;
 
+/**
+ * Created by Luboš Hájek in 2019
+ */
 public class User {
 
     private String macAddress;

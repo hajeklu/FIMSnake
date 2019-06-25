@@ -25,7 +25,6 @@ import cz.uhk.fimsnake.model.user.User;
 public class PreferencesActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
-    private Cache cache;
     private Context context;
     public final static String PRE_TEXTURES = "TEXTURES";
     public final static String PRE_NOTIFICATION = "NOTIFICATION";
@@ -40,7 +39,7 @@ public class PreferencesActivity extends AppCompatActivity {
 
         context = getApplicationContext();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        cache = CacheFactory.getInstance();
+        Cache cache = CacheFactory.getInstance();
 
         User user = cache.getUser();
         final EditText editText = findViewById(R.id.pref_alias_editable);

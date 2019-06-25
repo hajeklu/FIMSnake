@@ -1,17 +1,13 @@
 package cz.uhk.fimsnake.activity.services;
 
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-
 import cz.uhk.fimsnake.R;
-import cz.uhk.fimsnake.activity.MainActivity;
 import cz.uhk.fimsnake.activity.PreferencesActivity;
 import cz.uhk.fimsnake.activity.TapScore;
 

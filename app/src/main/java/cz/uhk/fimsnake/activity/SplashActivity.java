@@ -8,8 +8,6 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import java.util.prefs.Preferences;
-
 import cz.uhk.fimsnake.R;
 import cz.uhk.fimsnake.activity.services.NetworkService;
 import cz.uhk.fimsnake.activity.services.PreferencesService;

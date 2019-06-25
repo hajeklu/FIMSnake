@@ -16,14 +16,12 @@ import cz.uhk.fimsnake.view.GameView;
  */
 public class HeadTile extends Tile {
 
-    private Direction direction;
     private Snake snake;
     private boolean textures;
 
     public HeadTile(int x, int y, Direction direction, Snake snake) {
         super(x, y);
         this.snake = snake;
-        this.direction = direction;
         paint.setColor(Color.RED);
         switch (direction) {
             case UP:

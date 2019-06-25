@@ -5,6 +5,9 @@ import com.google.firebase.firestore.IgnoreExtraProperties;
 
 import java.util.Date;
 
+/**
+ * Created by Luboš Hájek in 2019
+ */
 @IgnoreExtraProperties
 public class Score implements Comparable<Score> {
 

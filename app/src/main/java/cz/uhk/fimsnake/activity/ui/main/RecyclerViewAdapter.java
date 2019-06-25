@@ -24,7 +24,6 @@ import cz.uhk.fimsnake.model.user.Score;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "RecyclerViewAdapter";
-    private Context context;
     private List<Score> scores;
     private List<Score> scoresCurrentUser;
     private int index = 0;
@@ -34,7 +33,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public RecyclerViewAdapter(Context context) {
         cache = CacheFactory.getInstance();
-        this.context = context;
         this.scores = cache.getAllScore();
         this.scoresCurrentUser = cache.getCurrentUserScore();
         this.scoreOrderbyDate = cache.getScoreOrderbyDate();

@@ -16,6 +16,9 @@ import cz.uhk.fimsnake.model.tiles.BonusTile;
 import cz.uhk.fimsnake.model.tiles.Tile;
 import cz.uhk.fimsnake.view.GameView;
 
+/**
+ * Created by Luboš Hájek in 2019
+ */
 public class GameCanvas {
 
     public static int TILESIZE = 40;

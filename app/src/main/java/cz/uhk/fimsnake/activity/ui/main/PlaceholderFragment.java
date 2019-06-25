@@ -37,7 +37,6 @@ public class PlaceholderFragment extends Fragment {
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
-        Cache cache = CacheFactory.getInstance();
         recyclerViewAdapter = new RecyclerViewAdapter(getContext());
         recyclerViewAdapter.setIndex(index);
     }

@@ -14,6 +14,9 @@ import cz.uhk.fimsnake.dao.DAOFactory;
 import cz.uhk.fimsnake.dao.IDAO;
 import cz.uhk.fimsnake.model.GameCanvas;
 
+/**
+ * Created by Luboš Hájek in 2019
+ */
 public class GameView extends View {
 
     private int FPS = 30;
@@ -98,9 +101,5 @@ public class GameView extends View {
     public Thread getT() {
         return t;
     }
-
-    public void setT(Thread t) {
-        this.t = t;
-    }
-
+    
 }
