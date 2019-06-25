@@ -156,9 +156,9 @@ public class GameCanvas {
         Context context = gameView.getContext();
         if (NetworkService.getInstance().isInternetAvailable(context)) {
             boolean result = databaseHelper.addScoreToPlayer(snake.lenght);
-            if (CacheFactory.getInstance().isNewRecord(snake.lenght)) {
-                NotifiService.createNotificationNewRecord(context);
-            }
+            //  if (CacheFactory.getInstance().isNewRecord(snake.lenght)) {
+            NotifiService.createNotificationNewRecord(context);
+            //  }
             databaseHelper.invalidAndRestartCache(context);
             return result;
         } else {

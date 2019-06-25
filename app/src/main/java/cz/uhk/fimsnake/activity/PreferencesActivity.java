@@ -10,6 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cz.uhk.fimsnake.R;
 import cz.uhk.fimsnake.activity.services.PreferencesService;
@@ -72,6 +73,7 @@ public class PreferencesActivity extends AppCompatActivity {
                 editor.putBoolean(PRE_TEXTURES, isChecked);
                 PreferencesService.setTextures(isChecked);
                 editor.commit();
+                Toast.makeText(context, "Textures settings was updated.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -85,6 +87,7 @@ public class PreferencesActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean(PRE_NOTIFICATION, isChecked);
                 editor.commit();
+                Toast.makeText(context, "Notification settings was updated.", Toast.LENGTH_SHORT).show();
             }
         });
 

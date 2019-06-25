@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+
 import cz.uhk.fimsnake.R;
 import cz.uhk.fimsnake.activity.PreferencesActivity;
 import cz.uhk.fimsnake.activity.TapScore;
@@ -30,7 +31,7 @@ public class NotifiService {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "channel")
                 .setSmallIcon(R.drawable.ic_star)
                 .setContentTitle("FIM Snake new record!")
-                .setContentText("You have new record in FIM snake. Your new record is ")
+                .setContentText("You have new record in FIM snake. Your new record is... ")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
