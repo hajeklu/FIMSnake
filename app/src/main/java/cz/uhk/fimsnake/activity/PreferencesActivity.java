@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import cz.uhk.fimsnake.R;
 import cz.uhk.fimsnake.activity.services.PreferencesService;
+import cz.uhk.fimsnake.activity.services.SoundService;
 import cz.uhk.fimsnake.dao.Cache;
 import cz.uhk.fimsnake.dao.CacheFactory;
 import cz.uhk.fimsnake.dao.DAOFactory;
@@ -31,6 +32,8 @@ public class PreferencesActivity extends AppCompatActivity {
     public final static String PRE_NOTIFICATION = "NOTIFICATION";
     public final static boolean TEXTURES_DEFAULT = true;
     public final static boolean NOTIFICATION_DEFAULT = true;
+    public final static String PRE_SOUNDS = "SOUNDS";
+    public final static boolean SOUNDS_DEFAULT = true;
 
 
     @Override
@@ -90,6 +93,23 @@ public class PreferencesActivity extends AppCompatActivity {
                 Toast.makeText(context, "Notification settings was updated.", Toast.LENGTH_SHORT).show();
             }
         });
+
+        final Switch sounds = findViewById(R.id.pref_switch_sounds);
+        sounds.setChecked(sharedPreferences.getBoolean(PRE_SOUNDS, SOUNDS_DEFAULT));
+        sounds.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(PRE_SOUNDS, isChecked);
+                if (isChecked)
+                    SoundService.play(getApplicationContext());
+                else
+                    SoundService.stop();
+                editor.commit();
+                Toast.makeText(context, "Sounds settings was updated.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
 }

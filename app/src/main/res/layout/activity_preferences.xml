@@ -23,45 +23,45 @@
         android:textSize="30sp"
         android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/colorPrimaryLightTransparent"
-            >
-            <TextView
-                android:textColor="@color/white"
-                android:id="@+id/pref_alias_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="@string/pref_title_display_name"
-                android:textSize="@dimen/pref_text_size_big"
-                android:layout_marginStart="10dp"
-                android:gravity="center"
-                />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryLightTransparent"
+        >
+        <TextView
+            android:textColor="@color/white"
+            android:id="@+id/pref_alias_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/pref_title_display_name"
+            android:textSize="@dimen/pref_text_size_big"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            />
 
-            <EditText
-                android:id="@+id/pref_alias_editable"
-                android:textColor="@color/white"
-                android:background="@android:color/transparent"
-                android:imeOptions="flagNoExtractUi"
-                android:textSize="@dimen/pref_text_size_small"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-    android:layout_marginEnd="10dp"
-    android:text="@string/pref_default_display_name"
-    android:gravity="right"
-    android:inputType="text"
-    android:textAlignment="gravity"
-    android:layout_weight="1"
-    />
-</LinearLayout>
+        <EditText
+            android:id="@+id/pref_alias_editable"
+            android:textColor="@color/white"
+            android:background="@android:color/transparent"
+            android:imeOptions="flagNoExtractUi"
+            android:textSize="@dimen/pref_text_size_small"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/pref_default_display_name"
+            android:gravity="right"
+            android:inputType="text"
+            android:textAlignment="gravity"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
 
-<LinearLayout
-android:layout_marginTop="5dp"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/colorPrimaryLightTransparent"
         >
