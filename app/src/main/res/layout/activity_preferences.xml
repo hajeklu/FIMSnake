@@ -4,144 +4,163 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.PreferencesActivity"
+    android:background="@drawable/snaketile"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="@drawable/snaketile"
-    >
+    tools:context=".activity.PreferencesActivity">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryLightTransparent"
         android:gravity="center"
         android:minHeight="?actionBarSize"
-        android:textColor="@color/white"
         android:padding="@dimen/appbar_padding"
         android:text="@string/preferences_title"
-        android:background="@color/colorPrimaryLightTransparent"
-        android:textSize="30sp"
-        android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+        android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
         android:background="@color/colorPrimaryLightTransparent"
-        >
+        android:orientation="horizontal">
+
         <TextView
-            android:textColor="@color/white"
             android:id="@+id/pref_alias_textview"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="@string/pref_title_display_name"
-            android:textSize="@dimen/pref_text_size_big"
             android:layout_marginStart="10dp"
             android:gravity="center"
-            />
+            android:text="@string/pref_title_display_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/pref_text_size_big" />
 
         <EditText
             android:id="@+id/pref_alias_editable"
-            android:textColor="@color/white"
-            android:background="@android:color/transparent"
-            android:imeOptions="flagNoExtractUi"
-            android:textSize="@dimen/pref_text_size_small"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginEnd="10dp"
-            android:text="@string/pref_default_display_name"
-            android:gravity="right"
-            android:inputType="text"
-            android:textAlignment="gravity"
             android:layout_weight="1"
-            />
+            android:background="@android:color/transparent"
+            android:gravity="right"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="text"
+            android:text="@string/pref_default_display_name"
+            android:textAlignment="gravity"
+            android:textColor="@color/white"
+            android:textSize="@dimen/pref_text_size_small" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
         android:background="@color/colorPrimaryLightTransparent"
-        >
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/textView"
-            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
-            android:text="@string/pref_title_mac"
-            android:textSize="@dimen/pref_text_size_big"
             android:gravity="center"
-            />
+            android:text="@string/pref_title_mac"
+            android:textColor="@color/white"
+            android:textSize="@dimen/pref_text_size_big" />
 
         <TextView
             android:id="@+id/mac"
-            android:textColor="@color/grey"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginEnd="10dp"
-            android:text="@string/pref_default_display_name"
-            android:gravity="right"
-            android:textSize="@dimen/pref_text_size_small"
-            android:textAlignment="gravity"
             android:layout_weight="1"
-            />
+            android:gravity="right"
+            android:text="@string/pref_default_display_name"
+            android:textAlignment="gravity"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/pref_text_size_small" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
         android:background="@color/colorPrimaryLightTransparent"
-        >
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/pref_text_textures"
-            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
-            android:text="@string/pref_title_textures"
-            android:textSize="@dimen/pref_text_size_big"
             android:gravity="center"
-            />
+            android:text="@string/pref_title_textures"
+            android:textColor="@color/white"
+            android:textSize="@dimen/pref_text_size_big" />
 
         <Switch
             android:id="@+id/pref_switch_textures"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="right"
             android:layout_marginRight="10dp"
-            android:textAlignment="gravity"/>
+            android:gravity="right"
+            android:textAlignment="gravity" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
         android:background="@color/colorPrimaryLightTransparent"
-        >
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/pref_text_notification"
-            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
-            android:text="Notification"
-            android:textSize="@dimen/pref_text_size_big"
             android:gravity="center"
-            />
+            android:text="Notification"
+            android:textColor="@color/white"
+            android:textSize="@dimen/pref_text_size_big" />
 
         <Switch
             android:id="@+id/pref_switch_notification"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="right"
             android:layout_marginRight="10dp"
-            android:textAlignment="gravity"/>
+            android:gravity="right"
+            android:textAlignment="gravity" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorPrimaryLightTransparent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/pref_text_sounds"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="@string/pref_title_sounds"
+            android:textColor="@color/white"
+            android:textSize="@dimen/pref_text_size_big" />
+
+        <Switch
+            android:id="@+id/pref_switch_sounds"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:gravity="right"
+            android:textAlignment="gravity" />
     </LinearLayout>
 
 </LinearLayout>

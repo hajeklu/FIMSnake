@@ -14,7 +14,7 @@ public class SoundService {
     private static MediaPlayer mediaPlayer;
 
     public static void play(Context context) {
-        mediaPlayer = MediaPlayer.create(context, R.raw.bensound_summer);
+        mediaPlayer = MediaPlayer.create(context, R.raw.bensoundsummer);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
     }
